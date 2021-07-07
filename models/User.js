@@ -24,6 +24,25 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  favMovie:[
+    {
+      type:mongoose.Schema.Types.ObjectId,
+      ref:'Movie'
+    }
+  
+  ],
+  favGame:[
+    {
+      type:mongoose.Schema.Types.ObjectId,
+      ref:'Games'
+    }
+  ],
+  favWebseries:[
+    {
+      type:mongoose.Schema.Types.ObjectId,
+      ref:'Webseries'
+    }
+  ]
 })
 
 module.exports = mongoose.model('User', UserSchema)

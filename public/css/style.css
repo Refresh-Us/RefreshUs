@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css?family=Sniglet');
+@import url('https://fonts.googleapis.com/css?family=Knewave');
+@import url('https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap');
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  background: linear-gradient(#141e30, #243b55);
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #112 url('../login-back.jpg') center no-repeat;
+  background-size: cover;
+}
+
+.containers{
+  margin: 50px;
+}
+
+#text,
+#shadow {
+  position: absolute;
+  margin: auto;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 5rem;
+  letter-spacing: 10px;
+  font-family: 'Zen Tokyo Zoo', cursive;
+  color: #fff;
+}
+
+@media only screen and (max-width: 670px){
+  #shadow,#text{
+    font-size: 4rem;
+  }
+}
+@media only screen and (max-width: 560px){
+  #shadow,#text{
+    font-size: 3rem;
+  }
+}
+@media only screen and (max-width: 450px){
+  #shadow,#text{
+    font-size: 2.5rem;
+  }
+}
+
+#text {
+  color: #333
+}
+
+#shadow {
+  text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
+}
+
+#glow {
+  animation: neon1 linear infinite 2s;
+  will-change: opacity;
+}
+
+#blink {
+  animation: blink linear infinite 2s;
+}
+
+
+@keyframes neon1 {
+  20% {
+      opacity: 1;
+  }
+  80% {
+      opacity: 0.6;
+  }
+}
+
+
+@keyframes blink {
+  70% {
+      opacity: 1;
+  }
+  79% {
+      opacity: 0;
+  }
+  81% {
+      opacity: 1;
+  }
+  82% {
+      opacity: 0;
+  }
+  83% {
+      opacity: 1;
+  }
+  92% {
+      opacity: 0;
+  }
+  92.5% {
+      opacity: 1;
+  }
+}
+
+
+.boxes{
+  top: 50%;
+  left: 50%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.boxes a {
+  position: relative;
+  display: inline-block;
+  padding: 20px 20px;
+  margin: auto;
+  top: 50vh;
+  font-weight: bolder;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: all .5s;
+  letter-spacing: 4px;
+  color: red;
+  background-color: rgba(255, 0, 0, 0.322);
+  border-radius: 20px;
+}
+
+.boxes a:hover {
+  background-color: red;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px red,
+              0 0 25px red,
+              0 0 50px red,
+              0 0 100px red;
+}
+
+.boxes a span {
+  position: absolute;
+  display: block;
+}
+
+@keyframes btnAnimA {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+.boxes a span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, red);
+  animation: btnAnimA 1500ms linear infinite;
+  /* animation-delay: 200ms; */
+  animation-fill-mode: backwards;
+  animation-play-state: running;
+}
+
+
+@keyframes btnAnimB {
+  0% {
+    top: -100%
+  }
+  50% {
+    top: 100%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+.boxes a span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, red);
+  animation: btnAnimB 1500ms linear infinite;
+  animation-delay: 300ms;
+}
+
+
+@keyframes btnAnimC {
+  0% {
+    right: -100%;
+  }
+  50% {
+    right: 100%;
+  }
+  100% {
+    right: 100%;
+  }
+}
+.boxes a span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, red);
+  animation: btnAnimC 1500ms linear infinite;
+  animation-delay: 600ms;
+}
+
+
+@keyframes btnAnimD {
+  0% {
+    bottom: -100%;
+  }
+  50%,100% {
+    bottom: 100%;
+  }
+}
+.boxes a span:nth-child(4) {
+  left: 0;
+  bottom: -100%;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, red);
+  animation: btnAnimD 1500ms linear infinite;
+  animation-delay: 900ms;
+} 

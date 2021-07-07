@@ -7,6 +7,9 @@ const gameSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  link:String,
+  duration:String,
+  description:String
 })
 
 module.exports = mongoose.model('Game',gameSchema);

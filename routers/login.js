@@ -5,12 +5,24 @@ const {ensureAuth , ensureGuest} = require('../middleware/auth')
 
 //Login page
 router.get('/',ensureGuest , (req,res) => {
-    res.send("Login page")
+    res.render('login',{
+        layout: 'login'
+    })
 })
 
 //@desc Login page
-router.get('/dashboard', async (req,res) => {
-    res.send('Dashboard')
+router.get('/dashboard', ensureAuth , async (req,res) => {
+    
+    try{
+        res.render('dashboard',{
+            name: req.user.displayName,
+            photo: req.user.image
+        })
+    }
+    catch(err){
+        console.error(err)
+        // res.render('/500')
+    }
 })
 
 module.exports = router
