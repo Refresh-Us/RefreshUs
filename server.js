@@ -22,7 +22,9 @@ app.use(express.json())
 
 
 app.engine('.hbs',exphbs({
-defaultLayout: 'main', extname: '.hbs'}));
+  defaultLayout: 'login',
+  extname: '.hbs'
+}));
 app.set('view engine', '.hbs');
 
 
@@ -39,13 +41,13 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use(userRouter)
-app.use(adminRouter)
+// app.use(userRouter)
+// app.use(adminRouter)
 
 app.use(express.static(path.join(__dirname,'public')))
 
 
-app.use('/',require('./routers/login'))
+app.use('/',require('./routers/user'))
 app.use('/auth',require('./routers/auth'));
 app.listen(process.env.PORT, () => {
   console.log(`Server is running`);

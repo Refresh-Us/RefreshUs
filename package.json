@@ -1,21 +1,21 @@
 {
   "name": "refreshus",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "start": "cross-env NODE_ENV=production node server",
     "dev": "cross-env NODE_ENV=production nodemon server"
   },
-
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "connect-mongo": "^4.4.1",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "express-handlebars": "^5.3.2",
     "express-session": "^1.17.2",
     "hbs": "^4.1.2",
     "jsonwebtoken": "^8.5.1",
@@ -25,5 +25,15 @@
     "nodemon": "^2.0.7",
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Refresh-Us/RefreshUs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Refresh-Us/RefreshUs/issues"
+  },
+  "homepage": "https://github.com/Refresh-Us/RefreshUs#readme",
+  "description": ""
 }
