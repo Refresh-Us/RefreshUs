@@ -313,68 +313,28 @@ footer {
       <nav class="sub-nav">
         <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
         <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
-        <a href="/profile">Welcome {{name}}</a>        
+        <a href="#">Welcome {{name}}</a>        
       </nav>      
     </header>
     <!-- END OF HEADER -->
     
     <!-- MAIN CONTAINER -->
-    <section class="main-container" >
-      <div class="location" id="home">
-          <h1 id="home">Movies</h1>
-          <div class="box">
-            {{#each movies}}
-
-            <a href=""><img src="{{coverImage}}" alt=""></a>
-           
-          {{/each}}
+    <section class="main-container">
+      <div class="location" id="home" style="padding-top:50px">
+          <div class="details" style="text-align: center;">
+          <h3>Hi!! {{name}}</h3>
+          <img src="{{photo}}" alt="" style="border-radius:50%;margin:auto">
+          <br>
+          <br>
+          <br>
+          <h5 >Your account was created on - {{time}}</h5>
           </div>
-      
-      
-
-      <h1 id="myList">Games</h1>
-      <div class="box">
-         {{#each games}}
-
-            <a href=""><img src="{{coverImage}}" alt=""></a>
-           
-          {{/each}}
-                      
-      </div>
-      
-      <h1 id="tvShows">Web Series</h1>
-      <div class="box">
-         {{#each webseries}}
-
-            <a href=""><img src="{{coverImage}}" alt=""></a>
-           
-          {{/each}}
-       
-      </div>
-      
-
-      <h1 id="movies">Blockbuster Action & Adventure</h1>
-      <div class="box">
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/m1.PNG?raw=true" alt=""></a>
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/m2.PNG?raw=true" alt=""></a>
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/m3.PNG?raw=true" alt=""></a>
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/m4.PNG?raw=true" alt=""></a>
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/m5.PNG?raw=true" alt=""></a>
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/m6.PNG?raw=true" alt=""></a>                
-      </div>
-
-      <h1 id="originals">Netflix Originals</h1>
-      <div class="box">
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/o1.PNG?raw=true" alt=""></a>
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/o2.PNG?raw=true" alt=""></a>
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/o3.PNG?raw=true" alt=""></a>
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/o4.PNG?raw=true" alt=""></a>
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/o5.PNG?raw=true" alt=""></a>
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/o6.PNG?raw=true" alt=""></a>                
-      </div>
-     
-    <!-- END OF MAIN CONTAINER -->
-
+        <h1>Favorite Movies</h1>
+        <div class="box"></div>
+        <h1>Favorite Webseries</h1>
+        <div class="box"></div>
+        <h1>Favorite Games</h1>
+        <div class="box"></div>
     <!-- LINKS -->
     <section class="link">
       <div class="logos">

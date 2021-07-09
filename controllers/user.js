@@ -2,7 +2,6 @@ const Movie=require('../models/movie')
 const Game=require('../models/game')
 const Webseries=require('../models/web-series')
 const express = require('express');
-const movie = require('../models/movie');
 
 exports.dashboard=async(req,res)=>{
 
@@ -54,4 +53,12 @@ exports.login=(req,res) => {
 exports.landingPage=(req,res) => {
     res.render('landing',{title:"Welcome",
 style:"landingpage.css"})
+}
+exports.profilePage=(req,res) => {
+    res.render('profile-page',{
+        title:"Profile",
+        name: req.user.displayName,
+        photo: req.user.image,
+        time: req.user.createdAt
+    })
 }

@@ -9,7 +9,6 @@ const MongoStore = require('connect-mongo');
 const connectDB = require('./config/db')
 const userRouter=require('./routers/user')
 const adminRouter=require('./routers/admin')
-// const movieRouter=require('./routers/dashboard')
 
 
 dotenv.config({path: './config/config.env'})
@@ -48,10 +47,10 @@ app.use(passport.session())
 app.use(express.static(path.join(__dirname,'public')))
 
 //Setting Routes
-// app.use(movieRouter)
 app.use(userRouter)
 app.use(adminRouter)
 app.use('/auth',require('./routers/auth'));
+app.use('/',require('./routers/dashboard'));
 
 
 

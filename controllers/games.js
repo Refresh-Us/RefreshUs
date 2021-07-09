@@ -1,5 +1,5 @@
 const express = require('express');
-const Movie = require('../models/Movie');
+const Game=require('../models/game')
 
 exports.display = async (req,res)=>{
     res.send('Games Section');
