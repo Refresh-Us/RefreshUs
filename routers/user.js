@@ -1,32 +1,19 @@
 const express = require('express')
 const router = express.Router()
 const {ensureAuth , ensureGuest} = require('../middleware/auth')
+// const dashboard =require('../controllers/user')
+const {dashboard, login,landingPage}=require('../controllers/user.js')
 
+
+//Landing Page
+router.get('/',ensureGuest,landingPage)
 
 //Login page
-router.get('/',ensureGuest,(req,res) => {
-    res.render('dashboard')
-})
+router.get('/login',ensureGuest,login)
 
-router.get('/login',ensureGuest,(req,res) => {
-    res.render('login',{
-        layout:'login'
-    })
-})
+//DashBoard
+router.get('/dashboard', ensureAuth ,dashboard)
 
-//@desc Login page
-router.get('/dashboard', ensureAuth , async (req,res) => {
-    
-    try{
-        res.render('home',{
-            name: req.user.displayName,
-            photo: req.user.image
-        })
-    }
-    catch(err){
-        console.error(err)
-        // res.render('/500')
-    }
-})
+// router.get('/d',dashboard.dashboard)
 
 module.exports = router

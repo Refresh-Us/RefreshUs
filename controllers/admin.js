@@ -11,7 +11,8 @@ exports.addMovie=async(req,res)=>{
         await movie.save()
         res.status(201).json({
             message:"Success",
-            movie
+            // movie:movie[0].coverImage
+            
         })
         
     } catch (error) {
@@ -94,7 +95,7 @@ exports.deleteWebseries=async(req,res)=>{
     
 }
 exports.deleteMovie=async(req,res)=>{
-    console.log("Heloo form controller")
+    console.log("Hello form controller")
     const _id=req.params.id
     console.log(_id);
 

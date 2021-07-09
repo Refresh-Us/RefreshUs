@@ -3,13 +3,6 @@
 <title>Log In</title>
 
 <style>
-    /*
-
-	Author: Danie234 / Ramadani
-	Website: http://ramadani.us/
-	Email: contact@ramadani.us
-	
-*/
 
 body {
 	background: url(http://private.indocyber.pro/test/image/background.png) fixed 50% no-repeat white;
@@ -127,14 +120,15 @@ form .button:active {
 
 <nav><a href="#" class="focus">Log In</a></nav>
 
-<form>
+<form method="POST" action="/alogin">
 
 	<h2>Admin Login</h2>
 
 	<input type="text" name="username" class="text-field" placeholder="Username" />
     <input type="password" name="password" class="text-field" placeholder="Password" />
+	<button type="submit" class="button" value="Log In">Submit Button</button>
     
-  <a href=""><input type="button"  class="button" value="Log In" /></a>
+  {{!-- <a href=""><input type="button"  class="button" value="Log In" /></a> --}}
 
 </form>
 </body>

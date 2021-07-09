@@ -7,6 +7,9 @@ const hbs = require('hbs');
 const path = require('path');
 const MongoStore = require('connect-mongo');
 const connectDB = require('./config/db')
+const userRouter=require('./routers/user')
+const adminRouter=require('./routers/admin')
+// const movieRouter=require('./routers/dashboard')
 
 
 dotenv.config({path: './config/config.env'})
@@ -41,14 +44,17 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
-// app.use(userRouter)
-// app.use(adminRouter)
-
+//Using Static Files
 app.use(express.static(path.join(__dirname,'public')))
 
-
-app.use('/',require('./routers/user'))
+//Setting Routes
+// app.use(movieRouter)
+app.use(userRouter)
+app.use(adminRouter)
 app.use('/auth',require('./routers/auth'));
+
+
+
 app.listen(process.env.PORT, () => {
   console.log(`Server is running`);
 });

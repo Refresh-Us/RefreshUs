@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const webSchema = new mongoose.Schema({
- movieName: String,
+ webseriesName: String,
  genre: String,
  createdAt: {
     type: Date,
@@ -9,7 +9,8 @@ const webSchema = new mongoose.Schema({
   },
   link:String,
   duration:String,
-  description:String
+  description:String,
+  coverImage:String
 })
 
 module.exports = mongoose.model('Webseries',webSchema);
