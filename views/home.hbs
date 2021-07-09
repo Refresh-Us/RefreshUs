@@ -329,7 +329,7 @@ footer {
            
           {{/each}}
           </div>
-      </div>
+      
       
 
       <h1 id="myList">Games</h1>
@@ -342,8 +342,13 @@ footer {
                       
       </div>
       
-      <h1 id="tvShows">TV Shows</h1>
+      <h1 id="tvShows">Web Series</h1>
       <div class="box">
+         {{#each webseries}}
+
+            <a href=""><img src="{{coverImage}}" alt=""></a>
+           
+          {{/each}}
        
       </div>
       
@@ -403,5 +408,6 @@ footer {
       <p>Carlos Avila &copy 2018</p>
     </footer>
   </div>
+  </section>
 </body>
 </html>

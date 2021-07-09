@@ -15,7 +15,8 @@ exports.dashboard=async(req,res)=>{
             photo: req.user.image,
             title:"Dashboard",
             movies:movies,
-            games:games
+            games:games,
+            webseries:webseries
             
         })
         // res.status(200).json({
