@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars')
 const passport = require('passport')
 const hbs = require('hbs');
 const path = require('path');
+const fetch = require('node-fetch');
 const MongoStore = require('connect-mongo');
 const connectDB = require('./config/db')
 const userRouter=require('./routers/user')
