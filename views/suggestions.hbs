@@ -1,3 +1,4 @@
+
 <html>
 <head>
   <meta charset="utf-8" />
@@ -288,11 +289,15 @@ footer {
     font-size: 15px;
   }
 
+  
+
+  
+   
 }
  </style>
 </head>
 <body>
-  <div class="wrapper" id="output">
+  <div class="wrapper">
 
     <!-- HEADER -->
     <header>
@@ -300,30 +305,12 @@ footer {
         <a id="logo" href="#home"><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/logo.PNG?raw=true" alt="Logo Image"></a>
       </div>      
       <nav class="main-nav">                
-        <a href="#">Home</a>
+        <a href="/dashboard">Home</a>
         <a href="/movies">Movies</a>
         <a href="/webseries">Webseries</a>
         <a href="/games">Games</a>
         <a href="/auth/logout">Logout</a>
       </nav>
-        <form class="form" id="form">
-            <input placeholder="Search Your Movie">
-            <button>Search</button>
-        </form>
-
-
-
-        <h4 class="widget-title-original">Sort</h4>
-		 <select id="select1">
-            <option value="duration">By Duration</option>
-            <option value="-rating">By Rating</option>
-        </select>
-     <button onclick="getOption()">
-        Sort 
-    </button>
-
-
-	
       <nav class="sub-nav">
         <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
         <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
@@ -333,41 +320,15 @@ footer {
     <!-- END OF HEADER -->
     
     <!-- MAIN CONTAINER -->
-    <section class="main-container" >
-      <div class="location" id="home">
-          <h1 id="home">Movies</h1>
-          <div class="box">
-            {{#each movies}}
-
-            <a href=""><img src="{{coverImage}}" alt=""></a>
-           
-          {{/each}}
-          </div>
-      
-      
-
-      {{!-- <h1 id="myList">Games</h1>
-      <div class="box">
-         {{#each games}}
-
-            <a href=""><img src="{{coverImage}}" alt=""></a>
-           
-          {{/each}}
-                      
-      </div> --}}
-      
-      {{!-- <h1 id="tvShows">Web Series</h1>
-      <div class="box">
-         {{#each webseries}}
-
-            <a href=""><img src="{{coverImage}}" alt=""></a>
-           
-          {{/each}}
-       
-      </div> --}}
-      
-    <!-- END OF MAIN CONTAINER -->
-
+    <section class="main-container">
+      <div class="location" id="home" style="padding-top:50px;text-align:center;">
+        <h1>Suggestions</h1>
+          <form>
+  <input type="text" placeholder="Subject" id="subject" required />
+  <input type="text" placeholder="Email Address" id="email" value="{{email}}" readonly />
+  <textarea placeholder="Your Suggestions" id="text" required></textarea>
+  <input type="submit" value="Send" class="btn"/>
+</form>
     <!-- LINKS -->
     <section class="link">
       <div class="logos">
@@ -393,7 +354,6 @@ footer {
         </ul>
       </div>
     </section>
-      <p id="output" class="container" style="background-color: black; color:wheat"  ></p>
     <!-- END OF LINKS -->
 
     <!-- FOOTER -->
@@ -403,67 +363,26 @@ footer {
     </footer>
   </div>
   </section>
-  
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-      console.log("inside script")
-       const Form = document.querySelector("form");
-    const search = document.querySelector("input");
-    {{!-- var x = document.getElementById("original").value; --}}
-     async function getOption() {
-       var output = document.getElementById('output');
-            selectElement = 
-                    document.querySelector('#select1');
-                      
-            out= selectElement.value;
-            console.log(out)
-              
-         
-          try {
-            const response = await axios.get("/movies",{ params: { sort: out } })
-            console.log(response);
-            output.className = 'wrapper';
-            console
-              output.innerHTML = response.data;
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+      $('form').on('submit',(e)=>{
+          e.preventDefault()
 
-         
-        } catch (error) {
-          console.error(error);
-        }
-      
-  
-           console.log(out)
-        }
+          const email = $('#email').val().trim()
+          const subject = $('#subject').val().trim()
+          const text = $('#text').val().trim()
 
-    
-    {{!-- console.log(x) --}}
-      Form.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const movieName = search.value;
-        movieName.toLowerCase()
-        console.log("inside form")
+          const data ={
+              email,
+              text,
+              subject,
+          }
 
 
-        async function getUser() {
-           var output = document.getElementById('output');
-          console.log("inside function")
-          console.log(movieName)
-          try {
-            const response = await axios.get("/movies",{ params: { movieName: movieName } })
-            console.log(response);
-            output.className = 'wrapper';
-            console
-              output.innerHTML = response.data;
-
-         
-        } catch (error) {
-          console.error(error);
-        }
-      }
-      getUser()
+          $.post('/email',data,function(){
+              alert("Thanks For Submitting Your Suggestions!!")
+          })
       })
-    
-   </script>
-   
+  </script>
 </body>
 </html>

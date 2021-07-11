@@ -24,6 +24,10 @@ const UserSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  email:{
+    type:String,
+    required: true
+  },
   favMovie:[
     {
       type:mongoose.Schema.Types.ObjectId,

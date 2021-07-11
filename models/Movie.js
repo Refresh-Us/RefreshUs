@@ -10,7 +10,8 @@ const movieSchema = new mongoose.Schema({
   link:String,
   duration:String,
   description:String,
-  coverImage:String
+  coverImage:String,
+  rating:Number
 
 })
 
