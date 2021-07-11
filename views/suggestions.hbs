@@ -1,3 +1,4 @@
+
 <html>
 <head>
   <meta charset="utf-8" />
@@ -304,78 +305,30 @@ footer {
         <a id="logo" href="#home"><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/logo.PNG?raw=true" alt="Logo Image"></a>
       </div>      
       <nav class="main-nav">                
-        <a href="#">Home</a>
+        <a href="/dashboard">Home</a>
         <a href="/movies">Movies</a>
         <a href="/webseries">Webseries</a>
         <a href="/games">Games</a>
-        <a href="/contact">Suggestions</a>
         <a href="/auth/logout">Logout</a>
       </nav>
       <nav class="sub-nav">
         <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
         <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
-        <a href="/profile">Welcome {{name}}</a>        
+        <a href="#">Welcome {{name}}</a>        
       </nav>      
     </header>
     <!-- END OF HEADER -->
     
     <!-- MAIN CONTAINER -->
-    <section class="main-container" >
-      <div class="location" id="home">
-          <h1 id="home">Movies</h1>
-          <div class="box">
-            {{#each movies}}
-
-            <a href=""><img src="{{coverImage}}" alt=""></a>
-           
-          {{/each}}
-          </div>
-      
-      
-
-      <h1 id="myList">Games</h1>
-      <div class="box">
-         {{#each games}}
-
-            <a href=""><img src="{{coverImage}}" alt=""></a>
-           
-          {{/each}}
-                      
-      </div>
-      
-      <h1 id="tvShows">Web Series</h1>
-      <div class="box">
-         {{#each webseries}}
-
-            <a href=""><img src="{{coverImage}}" alt=""></a>
-           
-          {{/each}}
-       
-      </div>
-      
-
-      <h1 id="movies">Blockbuster Action & Adventure</h1>
-      <div class="box">
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/m1.PNG?raw=true" alt=""></a>
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/m2.PNG?raw=true" alt=""></a>
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/m3.PNG?raw=true" alt=""></a>
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/m4.PNG?raw=true" alt=""></a>
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/m5.PNG?raw=true" alt=""></a>
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/m6.PNG?raw=true" alt=""></a>                
-      </div>
-
-      <h1 id="originals">Netflix Originals</h1>
-      <div class="box">
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/o1.PNG?raw=true" alt=""></a>
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/o2.PNG?raw=true" alt=""></a>
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/o3.PNG?raw=true" alt=""></a>
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/o4.PNG?raw=true" alt=""></a>
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/o5.PNG?raw=true" alt=""></a>
-        <a href=""><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/o6.PNG?raw=true" alt=""></a>                
-      </div>
-     
-    <!-- END OF MAIN CONTAINER -->
-
+    <section class="main-container">
+      <div class="location" id="home" style="padding-top:50px;text-align:center;">
+        <h1>Suggestions</h1>
+          <form>
+  <input type="text" placeholder="Subject" id="subject" required />
+  <input type="text" placeholder="Email Address" id="email" value="{{email}}" readonly />
+  <textarea placeholder="Your Suggestions" id="text" required></textarea>
+  <input type="submit" value="Send" class="btn"/>
+</form>
     <!-- LINKS -->
     <section class="link">
       <div class="logos">
@@ -410,5 +363,26 @@ footer {
     </footer>
   </div>
   </section>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+      $('form').on('submit',(e)=>{
+          e.preventDefault()
+
+          const email = $('#email').val().trim()
+          const subject = $('#subject').val().trim()
+          const text = $('#text').val().trim()
+
+          const data ={
+              email,
+              text,
+              subject,
+          }
+
+
+          $.post('/email',data,function(){
+              alert("Thanks For Submitting Your Suggestions!!")
+          })
+      })
+  </script>
 </body>
 </html>

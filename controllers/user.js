@@ -59,6 +59,7 @@ exports.profilePage=(req,res) => {
         title:"Profile",
         name: req.user.displayName,
         photo: req.user.image,
+        email:profile.emails[0].value, 
         time: req.user.createdAt
     })
 }
