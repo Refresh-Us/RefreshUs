@@ -2,7 +2,27 @@ const express = require('express');
 const Movie=require('../models/movie')
 
 exports.display = async (req,res)=>{
-        const movies=await Movie.find(req.query).lean()
+
+    const queryObj = { ...req.query };
+    const excludedFields = ["page", "sort", "limit", "fields"];
+    excludedFields.forEach((el) => {
+      delete queryObj[el];
+    });
+    const search=queryObj
+    const sort=req.query.sort
+    console.log(search)
+    console.log(sort)
+        // const movies=await Movie.find(search)
+        // .sort({duration:'asc'}).lean()
+        console.log(queryObj)
+        let query=Movie.find(queryObj)
+
+        if(req.query.sort){
+            query=query.sort(req.query.sort)
+        }
+
+        const movies=await query.lean()
+        console.log("Succesful Request")
         console.log(req.query)
         res.render('movie-page',{
             // name: req.user.displayName,

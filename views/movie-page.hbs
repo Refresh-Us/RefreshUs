@@ -296,7 +296,7 @@ footer {
  </style>
 </head>
 <body>
-  <div class="wrapper">
+  <div class="wrapper" id="output">
 
     <!-- HEADER -->
     <header>
@@ -314,6 +314,21 @@ footer {
             <input placeholder="Search Your Movie">
             <button>Search</button>
         </form>
+
+
+
+        <h4 class="widget-title-original">Sort</h4>
+		 <select id="select1">
+            <option value="duration">By Duration</option>
+            <option value="basic">Basic</option>
+            <option value="premium">Premium</option>
+        </select>
+     <button onclick="getOption()">
+        Check option
+    </button>
+
+
+	
       <nav class="sub-nav">
         <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
         <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
@@ -404,6 +419,7 @@ footer {
         </ul>
       </div>
     </section>
+      <p id="output" class="container" style="background-color: black; color:wheat"  ></p>
     <!-- END OF LINKS -->
 
     <!-- FOOTER -->
@@ -413,6 +429,66 @@ footer {
     </footer>
   </div>
   </section>
-   <script src="/js/movie.js"></script>
+  
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+      console.log("inside script")
+       const Form = document.querySelector("form");
+    const search = document.querySelector("input");
+    {{!-- var x = document.getElementById("original").value; --}}
+     async function getOption() {
+       var output = document.getElementById('output');
+            selectElement = 
+                    document.querySelector('#select1');
+                      
+            out= selectElement.value;
+              
+         
+          try {
+            const response = await axios.get("/movies",{ params: { sort: out } })
+            console.log(response);
+            output.className = 'wrapper';
+            console
+              output.innerHTML = response.data;
+
+         
+        } catch (error) {
+          console.error(error);
+        }
+      
+  
+           console.log(out)
+        }
+
+    
+    {{!-- console.log(x) --}}
+      Form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const movieName = search.value;
+        movieName.toLowerCase()
+        console.log("inside form")
+
+
+        async function getUser() {
+           var output = document.getElementById('output');
+          console.log("inside function")
+          console.log(movieName)
+          try {
+            const response = await axios.get("/movies",{ params: { movieName: movieName } })
+            console.log(response);
+            output.className = 'wrapper';
+            console
+              output.innerHTML = response.data;
+
+         
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      getUser()
+      })
+    
+   </script>
+   
 </body>
 </html>
