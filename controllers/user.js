@@ -6,6 +6,7 @@ const express = require('express');
 exports.dashboard=async(req,res)=>{
 
     try {
+        console.log(req.user.googleId);
         const games=await Game.find().lean()
         const movies=await Movie.find().lean()
         const webseries=await Webseries.find().lean()
@@ -51,6 +52,7 @@ exports.login=(req,res) => {
 }
 
 exports.landingPage=(req,res) => {
+
     res.render('landing',{title:"Welcome",
 style:"landingpage.css"})
 }
@@ -59,7 +61,6 @@ exports.profilePage=(req,res) => {
         title:"Profile",
         name: req.user.displayName,
         photo: req.user.image,
-        email:profile.emails[0].value, 
         time: req.user.createdAt
     })
 }

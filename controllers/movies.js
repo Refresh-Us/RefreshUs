@@ -24,11 +24,22 @@ exports.display = async (req,res)=>{
         const movies=await query.lean()
         console.log("Succesful Request")
         console.log(req.query)
-        res.render('movie-page',{
-            // name: req.user.displayName,
-            // photo: req.user.image,
+
+        console.log(req.user.email)
+        let email=req.user.email
+        for(let i=0;i<movies.length;i++){
+
+            Object.assign(movies[i], {email:email});
+        }
+        
+        console.log(movies);
+        // const userId=req.user._id.toString
+        res.render('movie-p',{
+            // email: req.user.email,
+            // userId: req.user._id,
             title:"Movies",
-            movies:movies,            
+            movies:movies, 
+            style:"movie-page.css",           
         })
 }
 

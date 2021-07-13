@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<link rel="stylesheet" href="css/{{style}}">
+<style>
+  .nice-select-wrap {
+  top: 24%;
+    left: 69%;
+    position: absolute;
+    margin: 0rem auto 0;
+    width: 11rem;
+    border-radius: 1.25rem;
+    border: 2px solid #ff2a2a;
+    overflow: hidden;
+    background-color: #2b2727;
+    transition: background 300ms ease;
+}
+.nice-select-wrap.down {
+  background-color: #1b1919;
+}
+.nice-select-wrap.down .drop::after {
+  transform: rotate(-90deg);
+}
+.nice-select-wrap .drop, .nice-select-wrap ul a {
+  width: 100%;
+  display: block;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: #666;
+  font-size: 0.88rem;
+  line-height: 1.88;
+  height: 2.5rem;
+}
+.nice-select-wrap .drop {
+  position: relative;
+}
+.nice-select-wrap .drop::after {
+  content: ">";
+  position: absolute;
+  text-align: center;
+  width: 1rem;
+  height: 1rem;
+  top: 50%;
+  right: 1rem;
+  margin-top: -0.5rem;
+  color: #666;
+  transform: rotate(90deg);
+  line-height: 0.94;
+  transition: all 300ms ease;
+}
+.nice-select-wrap ul {
+  width: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+}
+.nice-select-wrap ul a {
+  position: relative;
+}
+.nice-select-wrap ul a:hover {
+  color: red;
+}
+.nice-select-wrap ul a::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, rgba(245, 245, 245, 0) 0%, whitesmoke 10%, whitesmoke 90%, rgba(245, 245, 245, 0) 100%);
+}
+</style>
+
+<body>
+  <div class="ultimate" id="output">
+
+  
+      <header>
+      
+      
+      <div class="netflixLogo">
+        <a id="logo" href="#home"><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/logo.PNG?raw=true" alt="Logo Image"></a>
+      </div>      
+      <nav class="main-nav">                
+        <a href="#">Home</a>
+        <a href="/movies">Movies</a>
+        <a href="/webseries">Webseries</a>
+        <a href="/games">Games</a>
+        <a href="/auth/logout">Logout</a>
+      </nav>
+
+      <select class="nice-select" name="sort" multiple>
+  <option>Sort by...</option>
+  <option value="-rating">Rating: Descending</option>
+  <option value="duration">Duration: Ascending</option>
+  <option value="pop">Popularity</option>
+  <option value="low">Price: Low to High</option>
+  <option value="high">Price: High to Low</option>
+</select>
+
+
+    
+        <form class="form" id="form">
+            <div class = 'search-box'>
+              <input class = "search-text" type="text" placeholder = "Search Movie" id="searchMovie">
+              <a href="#" type="submit" class = "search-btn">
+                <i class="fas fa-search"></i>
+              </a>         
+           </div> 
+            {{!-- <input placeholder="Search Your Movie">
+            <button>Search</button> --}}
+        </form> 
+      <nav class="sub-nav">
+          
+        <a href="#">Welcome {{name}}</a>        
+      </nav>      
+
+      <h1>{{email}}</h1>
+    </header>
+
+	  {
+  
+<div class="wrapper" >
+   
+   {{#each movies }}
+   
+	<div class="main_card" >
+		<div class="card_left">
+			<div class="card_datails">
+				<h1>{{movieName}}</h1>
+				<div class="card_cat">
+					<p class="PG">PG - 13</p>
+					<p class="year">2018</p>
+					<p class="genre">{{genre}}</p>
+					<p class="time">2h 28m</p>
+				</div>
+				<p class="disc">{{description}}</p>
+				<a href="https://www.imdb.com/title/tt4912910/" target="_blank">Read More</a>
+			<div class="social-btn">
+        <!-- WATCH TRAILER-->
+				<button>
+					<i class="fas fa-play"></i> SEE TRAILER
+				</button>
+				<!-- GET-->
+				<button>
+					<i class="fas fa-download"></i> DOWNLOAD
+				</button>
+				<!--USERS RATINGS-->
+				<button>
+					<i class="fas fa-thumbs-up"></i>{{rating}}
+				</button>
+				<!--BOOKMARK-->
+				<button onclick="getFav(this)" value="{{_id}}" name="{{email}}">
+  
+					<i class="fas fa-star"></i>
+				</button>
+			</div>	
+			</div>
+		</div>
+		<div class="card_right">
+			<div class="img_container">
+				<img src="{{coverImage}}" alt="">
+				</div>
+				<div class="play_btn">
+					<a href="https://www.imdb.com/title/tt4912910/" target="_blank">
+						<i class="fas fa-play-circle"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+    
+    {{/each}}
+	</div>
+  </div>
+	   
+
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.0.1/color-thief.min.js"></script> --}}
+{{!-- <script src="https://fonts.googleapis.com/icon?family=Material+Icons"></script>  --}}
+
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+
+      console.log("inside script")
+
+       const Form = document.querySelector("form");
+    const search=document.getElementById("searchMovie")
+     {{!-- var selectElement = document.querySelector('input') --}}
+    
+    {{!-- var x = document.getElementById("original").value; --}}
+
+    
+     async function getOption(val) {
+        event.preventDefault();
+       console.log("inside get optioin")
+       var output = document.getElementById('output');
+            {{!-- selectElement = document.querySelector('input');
+                      
+            out= selectElement.value;
+            console.log(out) --}}
+              
+         
+          try {
+            const response = await axios.get("/movies",{ params: { sort: val } })
+            console.log(response);
+            output.className = 'ultimate';
+            console
+             output.innerHTML = response.data;
+
+         
+        } catch (error) {
+          console.error(error);
+        }
+      
+  
+        }
+
+      Form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const movieName = search.value;
+        movieName.toLowerCase()
+        console.log("inside form")
+
+        async function getUser() {
+           var output = document.getElementById('output');
+          console.log("inside function")
+          console.log(movieName)
+          try {
+            const response = await axios.get("/movies",{ params: { movieName: movieName } })
+            console.log(response);
+            output.className = 'ultimate';
+            console
+              output.innerHTML = response.data;
+
+         
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      getUser()
+      })
+
+
+       async function getFav(btn) {
+         const Usermail=btn.name
+         const movieId=btn.value
+
+         console.log(Usermail)
+         console.log(movieId)
+         
+         console.log("Inside getfav function")
+          try {
+            const response = await axios.get("/movies/like",
+            { params: { id:movieId ,
+              _id:Usermail 
+              } 
+            })
+            console.log(response);
+            console.log(id)
+            {{!-- console.log(_id) --}}
+            output.className = 'ultimate';
+            console
+              output.innerHTML = response.data;
+
+         
+        } catch (error) {
+          console.error(error);
+        }
+
+       }
+
+
+
+
+
+      {{!-- DropDown List --}}
+
+$('.nice-select').each(function() {
+  
+  var select = $(this),
+      name = select.attr('name');
+  
+  select.hide();
+  
+  select.wrap('<div class="nice-select-wrap"></div>');
+  
+  var parent = select.parent('.nice-select-wrap');
+  
+  parent.append('<ul id=' + name + ' style="display:none"></ul>');
+  
+  select.find('option').each(function() {
+
+    var option = $(this),
+        value = option.attr('value'),
+        label = option.text();
+    
+    if (option.is(":first-child")) {
+      
+      $('<a href="#" class="drop">' + label + '</a>').insertBefore(parent.find('ul'));
+      
+    } else {
+      
+      parent.find('ul').append('<li><a href="#" id="' + value + '">' + label + '</a></li>');
+      
+    }
+    
+  });
+  
+  parent.find('a').on('click', function(e) {
+    
+    parent.toggleClass('down').find('ul').slideToggle(300);
+    
+    e.preventDefault();
+  
+  });
+  
+  parent.find('ul a').on('click', function(e) {
+    
+    var niceOption = $(this),
+    		value = niceOption.attr('id'),
+        text = niceOption.text();
+    
+    select.val(value);
+    console.log(value)
+     getOption(value)
+    
+    parent.find('.drop').text(text);
+    
+    e.preventDefault();
+  
+  });
+  
+});
+    
+   </script>
+</body>
+</html>

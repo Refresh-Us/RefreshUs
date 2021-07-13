@@ -49,4 +49,12 @@ const UserSchema = new mongoose.Schema({
   ]
 })
 
+UserSchema.methods.assign=async function(id){
+  console.log("Inside Assign")
+  const user=this
+  console.log(user)
+  user.favMovie.push(id)
+  await user.save()
+}
 module.exports = mongoose.model('User', UserSchema)
+
