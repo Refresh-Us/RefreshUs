@@ -287,6 +287,8 @@
       async function getFav(btn) {
         console.log("Insdie getFav")
 
+
+
         
          let x=checkFav(btn)
           console.log(x)
@@ -295,7 +297,12 @@
         if(x>0){
             btn.style.backgroundColor='#6a5acd'
             alert("Already Added In Favorite List");
+        }else{
+        alert("Addedd To Favourite List")
+        btn.style.backgroundColor='#6a5acd'
+
         }
+
 
          const Usermail=btn.name
          const movieId=btn.value
