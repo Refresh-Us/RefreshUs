@@ -1,2 +1,70 @@
-<a href="/login" style="color: red;">Login</a>
-<a href="/admin" style="color: red;">Admin</a>
+<div class="intro">
+    <img src="" alt="logo">
+    <h1>Welcome To RefreshUs</h1>
+    <video>
+        <source src="header4.mp4" id="hvid">
+    </video>
+</div>
+
+<section>
+    <h1>Free and Unlimited Movies,Web Series and Games</h1>
+    <h4>Grab Your Seats and Enjoy The Show</h4>
+    <div class="boxes">
+    <br>
+      <a href="/auth/google">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <i class="fab fa-google"></i>
+        Login With Google
+      </a>
+</div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.0/gsap.min.js" integrity="sha512-2fk3Q4NXPYAqIha0glLZ2nluueK43aNoxvijPf53+DgL7UW9mkN+uXc1aEmnZdkkZVvtJZltpRt+JqTWc3TS3Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js" integrity="sha512-8E3KZoPoZCD+1dgfqhPbejQBnQfBXe8FuwL4z/c8sTrgeDMFEnoyTlH3obB4/fV+6Sg0a0XF+L/6xS4Xx1fUEg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/animation.gsap.js" integrity="sha512-judXDFLnOTJsUwd55lhbrX3uSoSQSOZR6vNrsll+4ViUFv+XOIr/xaIK96soMj6s5jVszd7I97a0H+WhgFwTEg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/plugins/debug.addIndicators.js" integrity="sha512-mq6TSOBEH8eoYFBvyDQOQf63xgTeAk7ps+MHGLWZ6Byz0BqQzrP+3GIgYL+KvLaWgpL8XgDVbIRYQeLa3Vqu6A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenMax.min.js"></script>
+<script>
+const intro = document.querySelector('.intro');
+const video = intro.querySelector('video');
+const text = intro.querySelector('h1');
+
+const section = document.querySelector('section');
+const end = section.querySelector('h1');
+const controller = new ScrollMagic.Controller();
+
+let scene = new ScrollMagic.Scene({
+    duration:12000,
+    triggerElement: intro,
+    triggerHook: 0
+})
+.setPin(intro)
+.addTo(controller)
+
+const textAnim = TweenMax.fromTo(text,3,{opacity:1},{opacity:0.3});
+
+let scene2 = new ScrollMagic.Scene({
+    duration: 8000,
+    triggerElement: intro,
+    triggerHook: 0
+})
+.setTween(textAnim)
+.addTo(controller)
+
+
+let accelamount = 0.1;
+let scrollpos = 0;
+let delay = 0;
+
+scene.on('update',e =>{
+    scrollpos = e.scrollPos/1000;
+})
+
+setInterval(() =>{
+    delay += (scrollpos - delay) * accelamount;
+    video.currentTime = scrollpos;
+},30)
+
+</script>

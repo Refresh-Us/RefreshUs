@@ -333,7 +333,7 @@ footer {
   background: #e50914;
 	-webkit-box-shadow: 0 0 50px rgba(0,0,0,0.1);
 	        box-shadow: 0 0 50px rgba(0,0,0,0.1);
-	-webkit-transition: 300ms ease-in-out;
+	transition: 300ms ease-in-out;
 }
 
 .disc {
@@ -459,7 +459,7 @@ button:hover {
   
 }
 .search-btn > i {
-  fontsize: 30px;
+  font-size: 30px;
 }
 
 .search-text {

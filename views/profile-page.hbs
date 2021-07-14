@@ -114,8 +114,8 @@ header {
 
 .box {
   display: grid;
-  grid-gap: 20px;
-  grid-template-columns: repeat(6, minmax(100px, 1fr));
+  grid-gap: 3vw;
+  grid-template-columns: repeat(4, minmax(100px, 1fr));
 }
 
 .box a {
@@ -127,10 +127,6 @@ header {
   -ms-transform: scale(1.4);
   -webkit-transform: scale(1.4);  
   transform: scale(1.4);
-}
-
-.box img {
-  border-radius: 2px;
 }
 
 /* LINKS */
@@ -286,13 +282,97 @@ footer {
     grid-template-columns: repeat(1, 1fr);
     text-align: center;
     font-size: 15px;
-  }
-
-  
-
-  
-   
+  }  
 }
+
+.container {
+  position: relative;
+  width: 18vw;
+  height: 45vh;
+}
+
+.container .overlay {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.5s ease;
+}
+
+.container:hover .overlay {
+  display: block;
+  background: rgba(0, 0, 0, .7);
+}
+
+.container img {
+  position: absolute;
+  height: 45vh;
+  width: 18vw;
+}
+
+.container .title {
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  top: 50%;
+  left: inherit;
+  font-size: 1.4vw;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  z-index: 1;
+  transition: top .5s ease;
+}
+
+.container:hover .title {
+  top: 40%;
+}
+
+.container .button {
+  position: absolute;
+  left:27%;
+  top: 180px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+
+.container .button a {
+  padding: 12px 48px;
+  text-align: center;
+  color: rgb(253, 253, 253);
+  background-color: rgb(255, 0, 0);
+  z-index: 1;
+   text-decoration: none;
+}
+.container .button2 {
+  position: absolute;
+  left:27%;
+  top: 100px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+
+.container .button2 a {
+  padding: 12px 48px;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  background-color: rgb(240, 0, 0);
+  z-index: 1;
+   text-decoration: none;
+}
+
+.container:hover .button {
+  opacity: 1;
+}
+.container:hover .button2 {
+  opacity: 1;
+}
+
  </style>
 </head>
 <body>
@@ -323,6 +403,7 @@ footer {
       <div class="location" id="home" style="padding-top:50px">
           <div class="details" style="text-align: center;">
           <h3>Hi!! {{name}}</h3>
+          <h3>{{email}}</h3>
           <img src="{{photo}}" alt="" style="border-radius:50%;margin:auto">
           <br>
           <br>
@@ -330,7 +411,16 @@ footer {
           <h5 >Your account was created on - {{time}}</h5>
           </div>
         <h1>Favorite Movies</h1>
-        <div class="box"></div>
+        <div class="box">
+          {{#each movies}}
+          <div class="container">
+              <img src="{{coverImage}}" alt="" />
+              <div class="overlay"></div>
+              <div class="button"><a href="#">Unfavorite</a></div>
+              <div class="button2"><a href="{{link}}">Download</a></div>
+          </div>
+          {{/each}}
+        </div>
         <h1>Favorite Webseries</h1>
         <div class="box"></div>
         <h1>Favorite Games</h1>

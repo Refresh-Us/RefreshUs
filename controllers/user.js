@@ -56,11 +56,18 @@ exports.landingPage=(req,res) => {
     res.render('landing',{title:"Welcome",
 style:"landingpage.css"})
 }
-exports.profilePage=(req,res) => {
+exports.profilePage= async (req,res) => {
+var movies = [];
+     fav = req.user.favMovie;
+    for (var i = 0; i < fav.length; i++) {
+        var item =await Movie.findById({_id:fav[i]}).lean()
+        movies.push(item)
+    }
     res.render('profile-page',{
         title:"Profile",
         name: req.user.displayName,
         photo: req.user.image,
-        time: req.user.createdAt
+        time: req.user.createdAt,
+        movies: movies
     })
 }
