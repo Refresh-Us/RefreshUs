@@ -158,7 +158,7 @@
 					<i class="fas fa-thumbs-up"></i>{{rating}}
 				</button>
 				<!--BOOKMARK-->
-				<button onclick="getFav(this)" value="{{_id}}" name="{{email}}">
+				<button onclick="getFav(this)" value="{{_id}}" name="{{email}}" style="background-color: #e50914;" id="x">
   
 					<i class="fas fa-star"></i>
 				</button>
@@ -183,24 +183,63 @@
 	   
 
 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
- {{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.0.1/color-thief.min.js"></script> --}}
-{{!-- <script src="https://fonts.googleapis.com/icon?family=Material+Icons"></script>  --}}
-
-
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-
+   
+   <script>
       console.log("inside script")
+     
+     async function hello(){
+       try {
+           const  res=await axios.get("/movies/all")
+             console.log(res)
+           {{!-- return res --}}
 
-       const Form = document.querySelector("form");
-    const search=document.getElementById("searchMovie")
-     {{!-- var selectElement = document.querySelector('input') --}}
-    
-    {{!-- var x = document.getElementById("original").value; --}}
+            return res
+        } catch (error) {
+          console.error(error);
+        }
+     }
+     let responseAll;
+    hello().then(function (result) {
+        console.log(result); // Ooops, the result is undefined
+        responseAll = result;
+    })
+    console.log(responseAll)
+
+    let countFav=0
+    function checkFav(btn) {
+      
+      console.log("running CheckFav")
+      console.log(responseAll.data.user.favMovie[0])
+      btn.id=countFav.toString()
+        console.log(btn.id)
+        countFav=parseInt(btn.id)
+        console.log(countFav)
+
+      for(let i=0;i<responseAll.data.user.favMovie.length;i++){
+          if(responseAll.data.user.favMovie[i].toString()===btn.value.toString()){
+              countFav=countFav+1;
+              console.log("inside for loop")
+              console.log(countFav)
+          }
+      }
+      console.log(countFav)
+      
+      
+      return countFav
+    }
 
     
-     async function getOption(val) {
+     
+     
+
+     
+
+      const Form = document.querySelector("form");
+      const search=document.getElementById("searchMovie")
+
+      async function getOption(val) {
         event.preventDefault();
        console.log("inside get optioin")
        var output = document.getElementById('output');
@@ -251,12 +290,26 @@
       })
 
 
-       async function getFav(btn) {
+      async function getFav(btn) {
+        console.log("Insdie getFav")
+
+        
+         let x=checkFav(btn)
+          console.log(x)
+          btn.count=x.toString()
+
+        if(x>0){
+            btn.style.backgroundColor='#6a5acd'
+            alert("Already Added In Favorite List");
+        }
+
          const Usermail=btn.name
          const movieId=btn.value
 
          console.log(Usermail)
-         console.log(movieId)
+         console.log(movieId) 
+
+         
          
          console.log("Inside getfav function")
           try {
@@ -285,7 +338,7 @@
 
       {{!-- DropDown List --}}
 
-$('.nice-select').each(function() {
+      $('.nice-select').each(function() {
   
   var select = $(this),
       name = select.attr('name');

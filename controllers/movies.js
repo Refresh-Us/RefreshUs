@@ -27,12 +27,18 @@ exports.display = async (req,res)=>{
 
         console.log(req.user.email)
         let email=req.user.email
-        for(let i=0;i<movies.length;i++){
+        let favMovie=req.user.favMovie
+        let i;
+        for( i=0;i<movies.length;i++){
 
             Object.assign(movies[i], {email:email});
         }
+        for( i=0;i<movies.length;i++){
+
+            Object.assign(movies[i], {favMovie:favMovie});
+        }
         
-        console.log(movies);
+        // console.log(movies);
         // const userId=req.user._id.toString
         res.render('movie-p',{
             // email: req.user.email,
@@ -41,6 +47,24 @@ exports.display = async (req,res)=>{
             movies:movies, 
             style:"movie-page.css",           
         })
+}
+
+exports.all=async (req,res)=>{
+
+    try {
+        const user=req.user
+
+        const movies=await Movie.find()
+    
+        res.status(200).json({
+            user,movies
+        })
+        
+    } catch (error) {
+        res.status(500).send(error)
+    }
+
+   
 }
 
 

@@ -29,6 +29,7 @@ router.get('/dashboard', ensureAuth ,dashboard)
 
 router.get('/profile',ensureAuth,profilePage)
 
+
 router.get('/movies/like', ensureAuth,async(req,res)=>{
     console.log("incoming getfav request");
     const id=req.query.id

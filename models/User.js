@@ -50,11 +50,24 @@ const UserSchema = new mongoose.Schema({
 })
 
 UserSchema.methods.assign=async function(id){
+  const user=this;
+  let count=0
+  console.log(id)
   console.log("Inside Assign")
-  const user=this
-  console.log(user)
-  user.favMovie.push(id)
-  await user.save()
+  console.log(user.favMovie.length);
+  for(let i=0;i<user.favMovie.length;i++){
+    if((user.favMovie[i]).toString()===id){
+        count++
+    }
+    
+  }
+  if(count==0){
+    console.log("if part Running")
+    user.favMovie.push(id)
+    await user.save()
+  }else{
+    console.log("Movie Already Exist In Fav List")
+  }
 }
 module.exports = mongoose.model('User', UserSchema)
 
