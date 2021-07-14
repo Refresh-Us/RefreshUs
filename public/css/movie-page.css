@@ -475,14 +475,11 @@ button:hover {
   line-height: 40px;
   width: 0px;
   
-/*   width: 250px; */
-  
-  
-  
+/*   width: 250px; */ 
 }
 
 /* sorting dropdown */
-.nice-select-wrap {
+/* .nice-select-wrap {
   top: 24%;
     left: 69%;
     position: absolute;
@@ -549,4 +546,4 @@ button:hover {
   width: 100%;
   height: 1px;
   background: linear-gradient(to right, rgba(245, 245, 245, 0) 0%, whitesmoke 10%, whitesmoke 90%, rgba(245, 245, 245, 0) 100%);
-}
+} */
