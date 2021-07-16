@@ -69,5 +69,18 @@ UserSchema.methods.assign=async function(id){
     console.log("Movie Already Exist In Fav List")
   }
 }
+
+UserSchema.methods.removeFav=async function(id){
+  const user=this;
+  for(let i=0;i<user.favMovie.length;i++){
+    if((user.favMovie[i]).toString()===id){
+        user.favMovie.splice(i,1)
+        console.log(id)
+    }
+    
+  }
+  await user.save()
+
+}
 module.exports = mongoose.model('User', UserSchema)
 

@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const {ensureAuth , ensureGuest} = require('../middleware/auth')
 // const dashboard =require('../controllers/user')
-const {dashboard, login,landingPage,profilePage}=require('../controllers/user.js')
+const {dashboard, login,landingPage,profilePage,favRemove}=require('../controllers/user.js')
 const Movie = require('../models/movie')
 const User = require('../models/User')
 const mongoose = require('mongoose');
@@ -29,6 +29,8 @@ router.get('/dashboard', ensureAuth ,dashboard)
 
 router.get('/profile',ensureAuth,profilePage)
 
+router.get('/profile/remove',ensureAuth,favRemove)
+
 
 router.get('/movies/like', ensureAuth,async(req,res)=>{
     console.log("incoming getfav request");
@@ -53,6 +55,7 @@ router.get('/movies/like', ensureAuth,async(req,res)=>{
         userId: req.user.googleId,
         title:"Movies",
         movies:movies, 
+
         style:"movie-page.css",           
     })
 

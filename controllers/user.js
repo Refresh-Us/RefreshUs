@@ -7,9 +7,9 @@ exports.dashboard=async(req,res)=>{
 
     try {
         console.log(req.user.googleId);
-        const games=await Game.find().lean()
-        const movies=await Movie.find().lean()
-        const webseries=await Webseries.find().lean()
+        const games=await Game.find().limit(5).lean()
+        const movies=await Movie.find().limit(5).lean()
+        const webseries=await Webseries.find().limit(5).lean()
         res.render('home',{
             name: req.user.displayName,
             photo: req.user.image,
@@ -56,6 +56,8 @@ exports.landingPage=(req,res) => {
     res.render('landing',{title:"Welcome",
 style:"landingpage.css"})
 }
+
+
 exports.profilePage= async (req,res) => {
 var movies = [];
      fav = req.user.favMovie;
@@ -63,6 +65,36 @@ var movies = [];
         var item =await Movie.findById({_id:fav[i]}).lean()
         movies.push(item)
     }
+    res.render('profile-page',{
+        title:"Profile",
+        name: req.user.displayName,
+        photo: req.user.image,
+        time: req.user.createdAt,
+        movies: movies
+    })
+}
+
+exports.favRemove=async (req,res)=>{
+
+    console.log("Inside favRemove");
+
+    //Removal OF MOvie
+    const id=req.query.id
+    const user=req.user
+    const movie=await Movie.findById(id)
+    console.log(movie);
+    await user.removeFav(id)
+
+    var movies = [];
+     fav = req.user.favMovie;
+     console.log(fav)
+    for (var i = 0; i < fav.length; i++) {
+        var item =await Movie.findById({_id:fav[i]}).lean()
+        console.log(item)
+        movies.push(item)
+    }
+
+   
     res.render('profile-page',{
         title:"Profile",
         name: req.user.displayName,

@@ -10,8 +10,8 @@ exports.display = async (req,res)=>{
     });
     const search=queryObj
     const sort=req.query.sort
-    console.log(search)
-    console.log(sort)
+    console.log("This is search"+search)
+    console.log("this is sort"+sort)
         // const movies=await Movie.find(search)
         // .sort({duration:'asc'}).lean()
         console.log(queryObj)

@@ -376,7 +376,9 @@ footer {
  </style>
 </head>
 <body>
-  <div class="wrapper">
+
+
+  <div class="wrapper" id="output" >
 
     <!-- HEADER -->
     <header>
@@ -416,7 +418,7 @@ footer {
           <div class="container">
               <img src="{{coverImage}}" alt="" />
               <div class="overlay"></div>
-              <div class="button"><a href="#">Unfavorite</a></div>
+              <div class="button"><a href="#" onclick="removeFav(this)" id="{{_id}}">Unfavorite</a></div>
               <div class="button2"><a href="{{link}}">Download</a></div>
           </div>
           {{/each}}
@@ -459,5 +461,30 @@ footer {
     </footer>
   </div>
   </section>
+  </div>
+  
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   
+  <script>
+    var output = document.getElementById('output');
+    async function removeFav(a){
+      console.log("inside removeFav")
+      const movieID=a.id
+      console.log(movieID)
+      try{
+
+      const response=await axios.get('/profile/remove',{params:{id:movieID}})
+       output.className = 'wrapper';
+            console
+              output.innerHTML = response.data;
+      }catch(error){
+        console.error(error);
+      }
+    }
+  </script>
+
 </body>
+
+
 </html>
