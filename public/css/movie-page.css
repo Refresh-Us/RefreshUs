@@ -15,7 +15,7 @@
 
 
 /* navbar */
-header {
+/* header {
   padding: 20px 20px 0 20px;
   position: fixed;
   top: 0;
@@ -27,7 +27,7 @@ header {
   background-color: var(--primary);
   width: 100%;
   margin-bottom: 0px;  
-}
+} */
 
 .netflixLogo {
   grid-area: nt;
@@ -151,14 +151,14 @@ footer {
 
 @media(max-width: 900px) {
 
-  header {
+  /* header {
     display: grid;
     grid-gap: 20px;
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas: 
     "nt nt nt  .  .  . sb . . . "
     "mn mn mn mn mn mn  mn mn mn mn";
-  }
+  } */
 
   .box {
     display: grid;
@@ -170,14 +170,14 @@ footer {
 
 @media(max-width: 700px) {
 
-  header {
+  /* header {
     display: grid;
     grid-gap: 20px;
     grid-template-columns: repeat(2, 1fr);
     grid-template-areas: 
     "nt nt nt  .  .  . sb . . . "
     "mn mn mn mn mn mn  mn mn mn mn";
-  }
+  } */
 
   .box {
     display: grid;
@@ -199,7 +199,7 @@ footer {
     font-size: 15px;
   }
 
-  header {
+  /* header {
     margin: 0;
     padding: 20px 0 0 0;
     position: static;
@@ -211,7 +211,7 @@ footer {
     "mn"
     "sb";
     text-align: center;
-  }
+  } */
 
   .netflixLogo {
     max-width: 100%;
@@ -420,7 +420,7 @@ button:hover {
 /* cards css */
 
 /* search bar */
-.search-box {
+/* .search-box {
   position: fixed;
     top: 5.4%;
     left: 68%;
@@ -475,8 +475,8 @@ button:hover {
   line-height: 40px;
   width: 0px;
   
-/*   width: 250px; */ 
-}
+  width: 250px; 
+} */
 
 /* sorting dropdown */
 /* .nice-select-wrap {
