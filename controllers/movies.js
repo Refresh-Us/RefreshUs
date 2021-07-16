@@ -8,14 +8,21 @@ exports.display = async (req,res)=>{
     excludedFields.forEach((el) => {
       delete queryObj[el];
     });
+    console.log("quesryobj"+queryObj)
     const search=queryObj
     const sort=req.query.sort
-    console.log(search)
+    console.log('This is search '+ search.movieName)
     console.log(sort)
+    var result = search.movieName
         // const movies=await Movie.find(search)
         // .sort({duration:'asc'}).lean()
-        console.log(queryObj)
-        let query=Movie.find(queryObj)
+        let query;
+        if (!(search.movieName === undefined)) {
+            query=Movie.find({"movieName": new RegExp("^"+result, 'i')})
+        }
+        else{
+        query = Movie.find(queryObj)
+        }
 
         if(req.query.sort){
             query=query.sort(req.query.sort)
@@ -45,6 +52,7 @@ exports.display = async (req,res)=>{
             // userId: req.user._id,
             title:"Movies",
             movies:movies, 
+            name: req.user.firstName,
             style:"movie-page.css",           
         })
 }
