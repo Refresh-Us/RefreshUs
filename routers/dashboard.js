@@ -7,6 +7,7 @@ const displayGames = require('../controllers/games')
 
 router.get('/movies',ensureAuth ,displayMovies.display)
 router.get('/movies/all', ensureAuth,displayMovies.all )
+router.get('/movies/search', ensureAuth,displayMovies.searched)
 router.get('/webseries',displayWebseries.display)
 router.get('/games',displayGames.display)
 

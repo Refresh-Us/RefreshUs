@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,22 +13,7 @@
 
 </head>
 <body>
-  <div class="ultimate" id="output">
-
-  
-      <header>
-      
-      {{!-- <div class="netflixLogo">
-        <a id="logo" href="#home"><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/logo.PNG?raw=true" alt="Logo Image"></a>
-      </div>      
-      <nav class="main-nav">                
-        <a href="/dashboard">Home</a>
-        <a href="/movies">Movies</a>
-        <a href="/webseries">Webseries</a>
-        <a href="/games">Games</a>
-        <a href="/auth/logout">Logout</a>
-      </nav>  --}}
-
+ 
        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">RefreshUs</a>
@@ -70,8 +56,7 @@
 </header>
 <div class="sort">
   <form class="d-flex form form" id="form">
-              {{!-- <input class="form-control" type="search" placeholder="Search" aria-label="Search"  id="searchMovie">
-              <button class="btn btn-outline-success search-btn" type="submit" id="search-btn">Search</button> --}}
+            
     <div class = 'search-box'>
     <input class = "search-text" type="text" placeholder = "Search Movie" id="searchMovie">
     <a href="#" type="submit" class = "search-btn">
@@ -82,19 +67,17 @@
  <select class="nice-select" name="sort" multiple>
   <option>Sort by...</option>
   <option value="-rating">Rating: Descending</option>
-  <option value="duration">Duration: Ascending</option>
-  <option value="pop">Popularity</option>
-  <option value="low">Price: Low to High</option>
-  <option value="high">Price: High to Low</option>
+  <option value="Action">Action</option>
+  <option value="Romance">Romance</option>
+  <option value="Comedy">Comedy</option>
+  <option value="Horror">Horror</option>
+  <option value="Thriller">Thriller</option>
+  <option value="Scifi">Sci-fi</option>
 </select>
 </div>
-
-    
-        
-
-	  
   
-<div class="wrapper" >
+  
+<div class="wrapper ultimate" id="output"> 
    
    {{#each movies }}
    
@@ -144,7 +127,7 @@
     
     {{/each}}
 	</div>
-  </div>
+
 	   
 
 
@@ -210,11 +193,21 @@
               
          
           try {
-            const response = await axios.get("/movies",{ params: { sort: val } })
+            const response = await axios.get("/movies/search",{ params: { sort: val } })
             console.log(response);
+              {{!-- let str=response.data
+            str=str.slice(3940,8360)
+            console.log(str) --}}
+            {{!-- document.querySelector('html').innerHTML =response.data --}}
+            
             output.className = 'ultimate';
+            
+              output.innerHTML =response.data
+
+              console.log(response.data)
+            {{!-- output.className = 'ultimate';
             console
-             output.innerHTML = response.data;
+             output.innerHTML = response.data; --}}
 
          
         } catch (error) {
@@ -235,11 +228,15 @@
           console.log("inside function")
           console.log(movieName)
           try {
-            const response = await axios.get("/movies",{ params: { movieName: movieName } })
+            const response = await axios.get("/movies/search",{ params: { movieName: movieName } })
             console.log(response);
+            {{!-- document.getElementsByTagName("html")[0].innerHTML=response.data --}}
+           
+            {{!-- document.querySelector('html').innerHTML =response.data --}}
+            
             output.className = 'ultimate';
-            console
-              output.innerHTML = response.data;
+            
+              output.innerHTML =response.data
 
          
         } catch (error) {
@@ -372,5 +369,13 @@ $('.header').on('click', '.search-toggle', function(e) {
 });
 
    </script>
+
+
+
+
+
+
+</div>
 </body>
 </html>
+</div>

@@ -11,7 +11,7 @@ const movieSchema = new mongoose.Schema({
   duration:String,
   description:String,
   coverImage:String,
-  rating:Number
+  rating:Number,
 
 })
 
