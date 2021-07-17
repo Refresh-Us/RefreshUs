@@ -9,83 +9,25 @@
 
 
 <link rel="stylesheet" href="css/{{style}}">
-<style>
-  .nice-select-wrap {
-  top: 24%  !important;
-    left: 69%  !important;
-    position: absolute  !important;
-    margin: 0rem auto 0  !important;
-    width: 11rem  !important;
-    border-radius: 1.25rem  !important;
-    border: 2px solid #ff2a2a  !important;
-    overflow: hidden  !important;
-    background-color: #2b2727  !important;
-    transition: background 300ms ease  !important;
-}
-.nice-select-wrap.down {
-  background-color: #1b1919 !important; 
-}
-.nice-select-wrap.down .drop::after {
-  transform: rotate(-90deg)  !important;
-}
-.nice-select-wrap .drop, .nice-select-wrap ul a {
-  width: 100%  !important;
-  display: block  !important;
-  padding: 0.5rem 1rem  !important;
-  text-decoration: none  !important;
-  color: #666  !important;
-  font-size: 0.88rem  !important;
-  line-height: 1.88  !important;
-  height: 2.5rem  !important;
-}
-.nice-select-wrap .drop {
-  position: relative  !important;
-}
-.nice-select-wrap .drop::after {
-  content: ">"  !important;
-  position: absolute  !important;
-  text-align: center  !important;
-  width: 1rem  !important;
-  height: 1rem  !important;
-  top: 50%  !important;
-  right: 1rem  !important;
-  margin-top: -0.5rem  !important;
-  color: #666;
-  transform: rotate(90deg)  !important;
-  line-height: 0.94  !important;
-  transition: all 300ms ease  !important;
-}
-.nice-select-wrap ul {
-  width: 100%  !important;
-  list-style-type: none  !important;
-  margin: 0  !important;
-  padding: 0  !important;
-  overflow: visible  !important;
-}
-.nice-select-wrap ul a {
-  position: relative  !important;
-}
-.nice-select-wrap ul a:hover {
-  color: red  !important;
-}
-.nice-select-wrap ul a::after {
-  content: ""  !important;
-  position: absolute  !important;
-  top: 0  !important;
-  left: 0  !important;
-  display: block  !important;
-  width: 100%  !important;
-  height: 1px  !important;
-  background: linear-gradient(to right, rgba(245, 245, 245, 0) 0%, whitesmoke 10%, whitesmoke 90%, rgba(245, 245, 245, 0) 100%)  !important;
-}
-</style>
+
 </head>
 <body>
   <div class="ultimate" id="output">
 
   
-    <header>
- 
+      <header>
+      
+      {{!-- <div class="netflixLogo">
+        <a id="logo" href="#home"><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/logo.PNG?raw=true" alt="Logo Image"></a>
+      </div>      
+      <nav class="main-nav">                
+        <a href="/dashboard">Home</a>
+        <a href="/movies">Movies</a>
+        <a href="/webseries">Webseries</a>
+        <a href="/games">Games</a>
+        <a href="/auth/logout">Logout</a>
+      </nav>  --}}
+
        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="/">RefreshUs</a>
@@ -93,7 +35,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 me-5">
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="/dashboard">Home</a>
               </li>
@@ -109,27 +51,49 @@
               <li class="nav-item">
                 <a class="nav-link" href="/contact">Suggestions</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/auth/logout">Logout</a>
-              </li>
             </ul>
-            <form class="d-flex form me-5" id="form">
-              <input class="form-control" type="search" placeholder="Search" aria-label="Search"  id="searchMovie">
-              <button class="btn btn-outline-success search-btn" type="submit" id="search-btn">Search</button>
-            </form>
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-               <a href="/profile" class="nav-link"> 
-                  <i class="fas fa-user-shield"> Welcome  {{name}}</i>
-               </a>
-              </li>
+
+            <ul class="navbar-nav me-2 mb-2 mb-lg-0">
+             <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="far fa-user"> Welcome {{name}}</i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+            <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
+          </ul>
+        </li>
             </ul>
           </div>
         </div>
       </nav>
- 
-    </header>
+</header>
+<div class="sort">
+  <form class="d-flex form form" id="form">
+              {{!-- <input class="form-control" type="search" placeholder="Search" aria-label="Search"  id="searchMovie">
+              <button class="btn btn-outline-success search-btn" type="submit" id="search-btn">Search</button> --}}
+    <div class = 'search-box'>
+    <input class = "search-text" type="text" placeholder = "Search Movie" id="searchMovie">
+    <a href="#" type="submit" class = "search-btn">
+     <i class="fas fa-search"></i>
+    </a>         
+  </div> 
+  </form>
+ <select class="nice-select" name="sort" multiple>
+  <option>Sort by...</option>
+  <option value="-rating">Rating: Descending</option>
+  <option value="duration">Duration: Ascending</option>
+  <option value="pop">Popularity</option>
+  <option value="low">Price: Low to High</option>
+  <option value="high">Price: High to Low</option>
+</select>
+</div>
 
+    
+        
+
+	  
+  
 <div class="wrapper" >
    
    {{#each movies }}
@@ -139,12 +103,12 @@
 			<div class="card_datails">
 				<h1>{{movieName}}</h1>
 				<div class="card_cat">
-					<p class="PG">PG - 13</p>
+					<p class="PG">Hollywood</p>
 					<p class="year">2018</p>
 					<p class="genre">{{genre}}</p>
 					<p class="time">2h 28m</p>
 				</div>
-				<p class="disc">{{description}}</p>
+				<p class="disc">{{ stripTags (truncate description 90)}}</p>
 				<a href="https://www.imdb.com/title/tt4912910/" target="_blank">Read More</a>
 			<div class="social-btn">
         <!-- WATCH TRAILER-->
@@ -157,12 +121,11 @@
 				</button>
 				<!--USERS RATINGS-->
 				<button>
-					<i class="fas fa-thumbs-up"></i>{{rating}}
+					<i class="fas fa-star"></i> {{rating}}
 				</button>
 				<!--BOOKMARK-->
 				<button onclick="getFav(this)" value="{{_id}}" name="{{email}}" style="background-color: #e50914;" id="x">
-  
-					<i class="fas fa-star"></i>
+          <i class="fas fa-heart"></i>
 				</button>
 			</div>	
 			</div>
@@ -397,6 +360,15 @@
   
   });
   
+});
+
+$('.header').on('click', '.search-toggle', function(e) {
+  var selector = $(this).data('selector');
+
+  $(selector).toggleClass('show').find('.search-input').focus();
+  $(this).toggleClass('active');
+
+  e.preventDefault();
 });
 
    </script>
