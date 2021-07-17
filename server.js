@@ -22,11 +22,15 @@ const app = express();
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 
-
+const {stripTags,truncate} = require('./helpers/hbs')
 
 app.engine('.hbs',exphbs({
   defaultLayout: 'login',
-  extname: '.hbs'
+  extname: '.hbs',
+  helpers: {
+    stripTags,
+    truncate,
+  }
 }));
 app.set('view engine', '.hbs');
 
