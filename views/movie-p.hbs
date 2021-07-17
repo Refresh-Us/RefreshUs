@@ -91,8 +91,10 @@
 					<p class="genre">{{genre}}</p>
 					<p class="time">2h 28m</p>
 				</div>
-				<p class="disc">{{ stripTags (truncate description 90)}}</p>
-				<a href="https://www.imdb.com/title/tt4912910/" target="_blank">Read More</a>
+				<p class="disc">{{description}}
+          {{!-- {{ stripTags (truncate description 90)}} --}}
+          </p>
+				{{!-- <a href="https://www.imdb.com/title/tt4912910/" target="_blank">Read More</a> --}}
 			<div class="social-btn">
         <!-- WATCH TRAILER-->
 				<button>
@@ -259,9 +261,9 @@
 
         if(x>0){
             btn.style.backgroundColor='#6a5acd'
-            alert("Already Added In Favorite List");
+            alert("Already Added");
         }else{
-        alert("Addedd To Favourite List")
+        alert("Added To Favourite List")
         btn.style.backgroundColor='#6a5acd'
 
         }
