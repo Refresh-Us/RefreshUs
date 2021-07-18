@@ -1,0 +1,383 @@
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Games</title>
+
+
+<link rel="stylesheet" href="css/{{style}}">
+
+</head>
+<body>
+ 
+       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">RefreshUs</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="margin: 0%;">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 me-5">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/dashboard">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/movies">Movies</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/webseries">Webseries</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/games">Games</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contact">Suggestions</a>
+              </li>
+            </ul>
+
+            <ul class="navbar-nav me-2 mb-2 mb-lg-0">
+             <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="far fa-user"> Welcome {{name}}</i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+            <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
+          </ul>
+        </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+</header>
+<div class="sort">
+  <form class="d-flex form form" id="form">
+            
+    <div class = 'search-box'>
+    <input class = "search-text" type="text" placeholder = "Search Game" id="searchMovie">
+    <a href="#" type="submit" class = "search-btn">
+     <i class="fas fa-search"></i>
+    </a>         
+  </div> 
+  </form>
+ <select class="nice-select" name="sort" multiple>
+  <option>Sort by...</option>
+  <option value="-rating">Rating: Descending</option>
+  <option value="Action">Action</option>
+  <option value="Romance">Romance</option>
+  <option value="Comedy">Comedy</option>
+  <option value="Horror">Horror</option>
+  <option value="Thriller">Thriller</option>
+  <option value="Scifi">Sci-fi</option>
+</select>
+</div>
+  
+  
+<div class="wrapper ultimate" id="output"> 
+   
+   {{#each games }}
+   
+	<div class="main_card" >
+		<div class="card_left">
+			<div class="card_datails">
+				<h1>{{gameName}}</h1>
+				<div class="card_cat">
+					<p class="PG">Hollywood</p>
+					<p class="year">2018</p>
+					<p class="genre">{{genre}}</p>
+					<p class="time">2h 28m</p>
+				</div>
+				<p class="disc">{{description}}
+          {{!-- {{ stripTags (truncate description 90)}} --}}
+          </p>
+				{{!-- <a href="https://www.imdb.com/title/tt4912910/" target="_blank">Read More</a> --}}
+			<div class="social-btn">
+        <!-- WATCH TRAILER-->
+				<button>
+					<i class="fas fa-play"></i> SEE TRAILER
+				</button>
+				<!-- GET-->
+				<button>
+					<i class="fas fa-download"></i> DOWNLOAD
+				</button>
+				<!--USERS RATINGS-->
+				<button>
+					<i class="fas fa-star"></i> {{rating}}
+				</button>
+				<!--BOOKMARK-->
+				<button onclick="getFav(this)" value="{{_id}}" name="{{email}}" style="background-color: #e50914;" id="x">
+          <i class="fas fa-heart"></i>
+				</button>
+			</div>	
+			</div>
+		</div>
+		<div class="card_right">
+			<div class="img_container">
+				<img src="{{coverImage}}" alt="">
+				</div>
+				<div class="play_btn">
+					<a href="https://www.imdb.com/title/tt4912910/" target="_blank">
+						<i class="fas fa-play-circle"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+    
+    {{/each}}
+	</div>
+
+	   
+
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+   
+   <script>
+      console.log("inside script")
+     
+     async function hello(){
+       try {
+           const  res=await axios.get("/games/all")
+             console.log(res)
+           {{!-- return res --}}
+
+            return res
+        } catch (error) {
+          console.error(error);
+        }
+     }
+     let responseAll;
+    hello().then(function (result) {
+        console.log(result); // Ooops, the result is undefined
+        responseAll = result;
+    })
+    console.log(responseAll)
+
+    function checkFav(btn) {
+    let countFav=0
+      
+      console.log("running CheckFav")
+      console.log(responseAll.data.user.favGame[0])
+      btn.id=countFav.toString()
+        console.log(btn.id)
+        countFav=parseInt(btn.id)
+        console.log(countFav)
+
+      for(let i=0;i<responseAll.data.user.favGame.length;i++){
+          if(responseAll.data.user.favGame[i].toString()===btn.value.toString()){
+              countFav=countFav+1;
+              console.log("inside for loop")
+              console.log(countFav)
+          }
+      }
+      console.log(countFav)
+      
+      
+      return countFav
+    }
+
+      const Form = document.querySelector("form");
+      const search=document.getElementById("searchMovie")
+
+      async function getOption(val) {
+        event.preventDefault();
+       console.log("inside get optioin")
+       var output = document.getElementById('output');
+            {{!-- selectElement = document.querySelector('input');
+                      
+            out= selectElement.value;
+            console.log(out) --}}
+              
+         
+          try {
+            const response = await axios.get("/games/search",{ params: { sort: val } })
+            console.log(response);
+              {{!-- let str=response.data
+            str=str.slice(3940,8360)
+            console.log(str) --}}
+            {{!-- document.querySelector('html').innerHTML =response.data --}}
+            
+            output.className = 'ultimate';
+            
+              output.innerHTML =response.data
+
+              console.log(response.data)
+            {{!-- output.className = 'ultimate';
+            console
+             output.innerHTML = response.data; --}}
+
+         
+        } catch (error) {
+          console.error(error);
+        }
+      
+  
+        }
+
+      Form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const gameName = search.value;
+        gameName.toLowerCase()
+        console.log("inside form")
+
+        async function getUser() {
+           var output = document.getElementById('output');
+          console.log("inside function")
+          console.log(gameName)
+          try {
+            const response = await axios.get("/games/search",{ params: { gameName: gameName } })
+            console.log(response);
+            {{!-- document.getElementsByTagName("html")[0].innerHTML=response.data --}}
+           
+            {{!-- document.querySelector('html').innerHTML =response.data --}}
+            
+            output.className = 'ultimate';
+            
+              output.innerHTML =response.data
+
+         
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      getUser()
+      })
+
+
+      async function getFav(btn) {
+        console.log("Insdie getFav")
+
+
+
+        
+         let x=checkFav(btn)
+          console.log(x)
+          btn.count=x.toString()
+
+        if(x>0){
+            btn.style.backgroundColor='#6a5acd'
+            alert("Already Added");
+        }else{
+        alert("Added To Favourite List")
+        btn.style.backgroundColor='#6a5acd'
+
+        }
+
+
+         const Usermail=btn.name
+         const gameId=btn.value
+
+         console.log(Usermail)
+         console.log(gameId) 
+
+         
+         
+         console.log("Inside getfav function")
+          try {
+            const response = await axios.get("/games/like",
+            { params: { id:gameId ,
+              _id:Usermail 
+              } 
+            })
+            console.log(response);
+            console.log(id)
+            {{!-- console.log(_id) --}}
+            output.className = 'ultimate';
+            console
+              output.innerHTML = response.data;
+
+         
+        } catch (error) {
+          console.error(error);
+        }
+
+       }
+
+
+
+
+
+      {{!-- DropDown List --}}
+
+      $('.nice-select').each(function() {
+  
+  var select = $(this),
+      name = select.attr('name');
+  
+  select.hide();
+  
+  select.wrap('<div class="nice-select-wrap"></div>');
+  
+  var parent = select.parent('.nice-select-wrap');
+  
+  parent.append('<ul id=' + name + ' style="display:none"></ul>');
+  
+  select.find('option').each(function() {
+
+    var option = $(this),
+        value = option.attr('value'),
+        label = option.text();
+    
+    if (option.is(":first-child")) {
+      
+      $('<a href="#" class="drop">' + label + '</a>').insertBefore(parent.find('ul'));
+      
+    } else {
+      
+      parent.find('ul').append('<li><a href="#" id="' + value + '">' + label + '</a></li>');
+      
+    }
+    
+  });
+  
+  parent.find('a').on('click', function(e) {
+    
+    parent.toggleClass('down').find('ul').slideToggle(300);
+    
+    e.preventDefault();
+  
+  });
+  
+  parent.find('ul a').on('click', function(e) {
+    
+    var niceOption = $(this),
+    		value = niceOption.attr('id'),
+        text = niceOption.text();
+    
+    select.val(value);
+    console.log(value)
+     getOption(value)
+    
+    parent.find('.drop').text(text);
+    
+    e.preventDefault();
+  
+  });
+  
+});
+
+$('.header').on('click', '.search-toggle', function(e) {
+  var selector = $(this).data('selector');
+
+  $(selector).toggleClass('show').find('.search-input').focus();
+  $(this).toggleClass('active');
+
+  e.preventDefault();
+});
+
+   </script>
+
+
+
+
+
+
+</div>
+</body>
+</html>
+</div>

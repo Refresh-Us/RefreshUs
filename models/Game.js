@@ -8,7 +8,7 @@ const gameSchema = new mongoose.Schema({
     default: Date.now,
   },
   link:String,
-  
+  rating: Number,
   description:String,
   coverImage:String
 })

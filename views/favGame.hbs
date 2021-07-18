@@ -1,13 +1,4 @@
-<html>
-<head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Netflix</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous"></script>
-
-  <script src="main.js"></script>
- <style>
+<style>
      /* CSS VARIABLES */
 :root {
   --primary: #141414;
@@ -374,47 +365,11 @@ footer {
 }
 
  </style>
-</head>
-<body>
-
 
  
-
-    <!-- HEADER -->
-    <header>
-      <div class="netflixLogo">
-        <a id="logo" href="#home"><img src="https://github.com/carlosavilae/Netflix-Clone/blob/master/img/logo.PNG?raw=true" alt="Logo Image"></a>
-      </div>      
-      <nav class="main-nav">                
-        <a href="#">Home</a>
-        <a href="/movies">Movies</a>
-        <a href="/webseries">Webseries</a>
-        <a href="/games">Games</a>
-        <a href="/auth/logout">Logout</a>
-      </nav>
-      <nav class="sub-nav">
-        <a href="#"><i class="fas fa-search sub-nav-logo"></i></a>
-        <a href="#"><i class="fas fa-bell sub-nav-logo"></i></a>
-        <a href="#">Welcome {{name}}</a>        
-      </nav>      
-    </header>
-    <!-- END OF HEADER -->
-    
-    <!-- MAIN CONTAINER -->
-    <section class="main-container">
-      <div class="location" id="home" style="padding-top:50px">
-          <div class="details" style="text-align: center;">
-          <h3>Hi!! {{name}}</h3>
-          <h3>{{email}}</h3>
-          <img src="{{photo}}" alt="" style="border-radius:50%;margin:auto">
-          <br>
-          <br>
-          <br>
-          <h5 >Your account was created on - {{time}}</h5>
-          </div>
-        <h1>Favorite Movies</h1>
-        <div class="box" class="wrapper" id="output">
-          {{#each movies}}
+ 
+ <div class="box">
+          {{#each games}}
           <div class="container">
               <img src="{{coverImage}}" alt="" />
               <div class="overlay"></div>
@@ -423,118 +378,3 @@ footer {
           </div>
           {{/each}}
         </div>
-
-        <h1>Favorite Webseries</h1>
-        <div class="box"  class="webWrapper" id="webOutput">
-          {{#each webseries}}
-          <div class="container">
-              <img src="{{coverImage}}" alt="" />
-              <div class="overlay"></div>
-              <div class="button"><a href="#" onclick="removeWebFav(this)" id="{{_id}}">Unfavorite</a></div>
-              <div class="button2"><a href="{{link}}">Download</a></div>
-          </div>
-          {{/each}}
-        </div>
-        
-        <h1>Favorite Games</h1>
-        <div class="box" class="gameWrapper" id="gameOutput">
-          {{#each games}}
-          <div class="container">
-              <img src="{{coverImage}}" alt="" />
-              <div class="overlay"></div>
-              <div class="button"><a href="#" onclick="removeGameFav(this)" id="{{_id}}">Unfavorite</a></div>
-              <div class="button2"><a href="{{link}}">Download</a></div>
-          </div>
-          {{/each}}
-        </div>
-    <!-- LINKS -->
-    <section class="link">
-      <div class="logos">
-        <a href="#"><i class="fab fa-facebook-square fa-2x logo"></i></a>
-        <a href="#"><i class="fab fa-instagram fa-2x logo"></i></a>
-        <a href="#"><i class="fab fa-twitter fa-2x logo"></i></a>
-        <a href="#"><i class="fab fa-youtube fa-2x logo"></i></a>
-      </div>
-      <div class="sub-links">
-        <ul>
-          <li><a href="#">Audio and Subtitles</a></li>
-          <li><a href="#">Audio Description</a></li>
-          <li><a href="#">Help Center</a></li>
-          <li><a href="#">Gift Cards</a></li>
-          <li><a href="#">Media Center</a></li>
-          <li><a href="#">Investor Relations</a></li>
-          <li><a href="#">Jobs</a></li>
-          <li><a href="#">Terms of Use</a></li>
-          <li><a href="#">Privacy</a></li>
-          <li><a href="#">Legal Notices</a></li>
-          <li><a href="#">Corporate Information</a></li>
-          <li><a href="#">Contact Us</a></li>
-        </ul>
-      </div>
-    </section>
-    <!-- END OF LINKS -->
-
-    <!-- FOOTER -->
-    <footer>
-      <p>&copy 1997-2018 Netflix, Inc.</p>
-      <p>Carlos Avila &copy 2018</p>
-    </footer>
-  </div>
-  </section>
-  
-  
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-   
-  <script>
-    async function removeFav(a){
-    var output = document.getElementById('output');
-      console.log("inside removeFav")
-      const movieID=a.id
-      console.log(movieID)
-      try{
-
-      const response=await axios.get('/profile/remove',{params:{id:movieID}})
-       output.className = 'wrapper';
-            console
-              output.innerHTML = response.data;
-      }catch(error){
-        console.error(error);
-      }
-    }
-    async function removeGameFav(a){
-       var output = document.getElementById('gameOutput');
-      console.log("inside removeFav")
-      const gameID=a.id
-      console.log(gameID)
-      try{
-
-      const response=await axios.get('/profile/remove/game',{params:{id:gameID}})
-       output.className = 'gameWrapper';
-            console
-              output.innerHTML = response.data;
-      }catch(error){
-        console.error(error);
-      }
-    }
-    async function removeWebFav(a){
-       var output = document.getElementById('webOutput');
-      console.log("inside removeFav")
-      const webID=a.id
-      console.log(webID)
-      try{
-
-      const response=await axios.get('/profile/remove/web',{params:{id:webID}})
-       output.className = 'webWrapper';
-            console
-              output.innerHTML = response.data;
-      }catch(error){
-        console.error(error);
-      }
-    }
-  </script>
-
-</body>
-
-
-</html>

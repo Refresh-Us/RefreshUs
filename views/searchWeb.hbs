@@ -22,8 +22,10 @@
 					<p class="genre">{{genre}}</p>
 					<p class="time">2h 28m</p>
 				</div>
-				<p class="disc">{{ stripTags (truncate description 90)}}</p>
-				<a href="https://www.imdb.com/title/tt4912910/" target="_blank">Read More</a>
+				<p class="disc">{{description}}
+          {{!-- {{ stripTags (truncate description 90)}} --}}
+          </p>
+				{{!-- <a href="https://www.imdb.com/title/tt4912910/" target="_blank">Read More</a> --}}
 			<div class="social-btn">
         <!-- WATCH TRAILER-->
 				<button>

@@ -60,17 +60,31 @@ style:"landingpage.css"})
 
 exports.profilePage= async (req,res) => {
 var movies = [];
-     fav = req.user.favMovie;
-    for (var i = 0; i < fav.length; i++) {
-        var item =await Movie.findById({_id:fav[i]}).lean()
+var games = [];
+var webseries = [];
+     favM = req.user.favMovie;
+     favG = req.user.favGame;
+     favW = req.user.favWebseries;
+    for (var i = 0; i < favM.length; i++) {
+        var item =await Movie.findById({_id:favM[i]}).lean()
         movies.push(item)
+    }
+    for (var i = 0; i < favG.length; i++) {
+        var item =await Game.findById({_id:favG[i]}).lean()
+        games.push(item)
+    }
+    for (var i = 0; i < favW.length; i++) {
+        var item =await Webseries.findById({_id:favW[i]}).lean()
+        webseries.push(item)
     }
     res.render('profile-page',{
         title:"Profile",
         name: req.user.displayName,
         photo: req.user.image,
         time: req.user.createdAt,
-        movies: movies
+        movies: movies,
+        games: games,
+        webseries:webseries
     })
 }
 
@@ -95,11 +109,69 @@ exports.favRemove=async (req,res)=>{
     }
 
    
-    res.render('profile-page',{
-        title:"Profile",
-        name: req.user.displayName,
-        photo: req.user.image,
-        time: req.user.createdAt,
-        movies: movies
+    res.render('favMovie',{
+        // title:"Profile",
+        // name: req.user.displayName,
+        // photo: req.user.image,
+        // time: req.user.createdAt,
+        movies: movies,
+    })
+}
+exports.favGameRemove=async (req,res)=>{
+
+    console.log("Inside favRemove");
+
+    //Removal OF MOvie
+    const id=req.query.id
+    const user=req.user
+    const game=await Game.findById(id)
+    console.log(game);
+    await user.removeGameFav(id)
+
+    var games = [];
+     fav = req.user.favGame;
+     console.log(fav)
+    for (var i = 0; i < fav.length; i++) {
+        var item =await Game.findById({_id:fav[i]}).lean()
+        console.log(item)
+        games.push(item)
+    }
+
+   
+    res.render('favGame',{
+        // title:"Profile",
+        // name: req.user.displayName,
+        // photo: req.user.image,
+        // time: req.user.createdAt,
+        games: games,
+    })
+}
+exports.favWebRemove=async (req,res)=>{
+
+    console.log("Inside favRemoveWebseries");
+
+    //Removal OF MOvie
+    const id=req.query.id
+    const user=req.user
+    const webseries=await Webseries.findById(id)
+    console.log(webseries);
+    await user.removeWebFav(id)
+
+    var webSeries = [];
+     fav = req.user.favWebseries;
+     console.log(fav)
+    for (var i = 0; i < fav.length; i++) {
+        var item =await Webseries.findById({_id:fav[i]}).lean()
+        console.log(item)
+        webSeries.push(item)
+    }
+
+   
+    res.render('favWeb',{
+        // title:"Profile",
+        // name: req.user.displayName,
+        // photo: req.user.image,
+        // time: req.user.createdAt,
+        webseries: webSeries,
     })
 }
