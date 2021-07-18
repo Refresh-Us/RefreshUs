@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>Games</title>
 
 
@@ -79,56 +80,35 @@
   
 <div class="wrapper ultimate" id="output"> 
    
-   {{#each games }}
-   
-	<div class="main_card" >
-		<div class="card_left">
-			<div class="card_datails">
-				<h1>{{gameName}}</h1>
-				<div class="card_cat">
-					<p class="PG">Hollywood</p>
-					<p class="year">2018</p>
-					<p class="genre">{{genre}}</p>
-					<p class="time">2h 28m</p>
-				</div>
-				<p class="disc">{{description}}
-          {{!-- {{ stripTags (truncate description 90)}} --}}
-          </p>
-				{{!-- <a href="https://www.imdb.com/title/tt4912910/" target="_blank">Read More</a> --}}
-			<div class="social-btn">
-        <!-- WATCH TRAILER-->
-				<button>
-					<i class="fas fa-play"></i> SEE TRAILER
-				</button>
-				<!-- GET-->
-				<button>
-					<i class="fas fa-download"></i> DOWNLOAD
-				</button>
-				<!--USERS RATINGS-->
-				<button>
-					<i class="fas fa-star"></i> {{rating}}
-				</button>
-				<!--BOOKMARK-->
-				<button onclick="getFav(this)" value="{{_id}}" name="{{email}}" style="background-color: #e50914;" id="x">
-          <i class="fas fa-heart"></i>
-				</button>
-			</div>	
-			</div>
-		</div>
-		<div class="card_right">
-			<div class="img_container">
-				<img src="{{coverImage}}" alt="">
-				</div>
-				<div class="play_btn">
-					<a href="https://www.imdb.com/title/tt4912910/" target="_blank">
-						<i class="fas fa-play-circle"></i>
-					</a>
-				</div>
-			</div>
-		</div>
-    
-    {{/each}}
+   {{#each games}}
+   <div class="movie_card" id="bright">
+  <div class="info_section">
+    <div class="movie_header">
+      <img class="locandina" src="{{titleImage}}"/>
+      <h4>{{gameName}}</h4>
+      <span class="minutes">{{rating}}</span>
+      <p class="type">{{genre}}</p>
+    </div>
+    <div class="movie_desc">
+      <p class="text">
+        {{description}}
+      </p>
+    </div>
+    <div class="movie_social">
+      <ul>
+        <li><i class="material-icons">share</i></li>
+        <li><i class="material-icons"></i></li>
+				</button></li>
+        <li><i class="material-icons">chat_bubble</i></li>
+      </ul>
+    </div>
+  </div>
+  <div class="blur_back bright_back" style="background: url('{{coverImage}}');background-size: 700px 500px;background-position: center;"></div>
+</div>
+ {{/each}}
 	</div>
+
+ 
 
 	   
 
@@ -260,11 +240,11 @@
           btn.count=x.toString()
 
         if(x>0){
-            btn.style.backgroundColor='#6a5acd'
+            btn.style.color='red'
             alert("Already Added");
         }else{
         alert("Added To Favourite List")
-        btn.style.backgroundColor='#6a5acd'
+        btn.style.color='red'
 
         }
 
