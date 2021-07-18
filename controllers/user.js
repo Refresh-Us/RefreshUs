@@ -7,9 +7,9 @@ exports.dashboard=async(req,res)=>{
 
     try {
         console.log(req.user.googleId);
-        const games=await Game.find().limit(5).lean()
-        const movies=await Movie.find().limit(5).lean()
-        const webseries=await Webseries.find().limit(5).lean()
+        const games=await Game.find().limit(6).lean()
+        const movies=await Movie.find().limit(6).lean()
+        const webseries=await Webseries.find().limit(6).lean()
         res.render('home',{
             name: req.user.displayName,
             photo: req.user.image,

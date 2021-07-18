@@ -10,20 +10,22 @@
 
       </style>
       
-      {{#each webseries }}
+     {{#each movies }}
    
 	<div class="main_card" >
 		<div class="card_left">
 			<div class="card_datails">
-				<h1>{{webseriesName}}</h1>
+				<h1>{{movieName}}</h1>
 				<div class="card_cat">
 					<p class="PG">Hollywood</p>
 					<p class="year">2018</p>
 					<p class="genre">{{genre}}</p>
 					<p class="time">2h 28m</p>
 				</div>
-				<p class="disc">{{ stripTags (truncate description 90)}}</p>
-				<a href="https://www.imdb.com/title/tt4912910/" target="_blank">Read More</a>
+				<p class="disc">{{description}}
+          {{!-- {{ stripTags (truncate description 90)}} --}}
+          </p>
+				{{!-- <a href="https://www.imdb.com/title/tt4912910/" target="_blank">Read More</a> --}}
 			<div class="social-btn">
         <!-- WATCH TRAILER-->
 				<button>
