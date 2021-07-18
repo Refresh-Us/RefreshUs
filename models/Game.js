@@ -10,7 +10,9 @@ const gameSchema = new mongoose.Schema({
   link:String,
   rating: Number,
   description:String,
-  coverImage:String
+  coverImage:String,
+  titleImage:String
+
 })
 
 module.exports = mongoose.model('Game',gameSchema);
