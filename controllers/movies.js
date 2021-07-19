@@ -101,8 +101,8 @@ exports.searched=async (req,res)=>{
         if(req.query.sort){
             if(req.query.sort==='-rating'){
                 console.log('this req.sort'+req.query.sort)
-                query=query.sort(req.query.sort)
-
+                // query=query.sort(req.query.sort)
+                query=Movie.find().sort({rating:-1})
             }else{
                 query=Movie.find({genre:req.query.sort})
             }

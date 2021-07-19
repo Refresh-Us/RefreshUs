@@ -10,7 +10,9 @@ const webSchema = new mongoose.Schema({
   link:String,
   duration:String,
   description:String,
-  coverImage:String
+  coverImage:String,
+  year: String,
+  rating:String
 })
 
 module.exports = mongoose.model('Webseries',webSchema);

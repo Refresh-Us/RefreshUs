@@ -12,7 +12,8 @@ const movieSchema = new mongoose.Schema({
   description:String,
   coverImage:String,
   rating:Number,
-
+  year: String,
+  type: String
 })
 
 module.exports = mongoose.model('Movie',movieSchema);

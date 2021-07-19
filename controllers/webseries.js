@@ -101,7 +101,8 @@ exports.searched=async (req,res)=>{
         if(req.query.sort){
             if(req.query.sort==='-rating'){
                 console.log('this req.sort'+req.query.sort)
-                query=query.sort(req.query.sort)
+                // query=query.sort(req.query.sort)
+                query=Webseries.find().sort({rating:-1})
 
             }else{
                 query=Webseries.find({genre:req.query.sort})
