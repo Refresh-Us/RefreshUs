@@ -97,8 +97,8 @@
     <div class="movie_social">
       <ul>
         <li><i class="material-icons">share</i></li>
-        <li><i class="material-icons"></i></li>
-				</button></li>
+        <li><button class="material-icons" onclick="getFav(this)" value="{{_id}}" name="{{email}}" id="x"></button></li>
+			
         <li><i class="material-icons">chat_bubble</i></li>
       </ul>
     </div>
@@ -144,12 +144,13 @@
       console.log("running CheckFav")
       console.log(responseAll.data.user.favGame[0])
       btn.id=countFav.toString()
+      
         console.log(btn.id)
         countFav=parseInt(btn.id)
         console.log(countFav)
 
       for(let i=0;i<responseAll.data.user.favGame.length;i++){
-          if(responseAll.data.user.favGame[i].toString()===btn.value.toString()){
+          if(responseAll.data.user.favGame[i]===btn.value){
               countFav=countFav+1;
               console.log("inside for loop")
               console.log(countFav)
@@ -232,19 +233,16 @@
       async function getFav(btn) {
         console.log("Insdie getFav")
 
-
-
-        
          let x=checkFav(btn)
           console.log(x)
           btn.count=x.toString()
 
-        if(x>0){
-            btn.style.color='red'
-            alert("Already Added");
-        }else{
-        alert("Added To Favourite List")
-        btn.style.color='red'
+          if(x>0){
+              btn.style.color='red'
+              alert("Already Added");
+          }else{
+          alert("Added To Favourite List")
+          btn.style.color='red'
 
         }
 

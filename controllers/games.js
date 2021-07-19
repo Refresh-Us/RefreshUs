@@ -34,7 +34,7 @@ exports.display = async (req,res)=>{
 
         console.log(req.user.email)
         let email=req.user.email
-        let favgame=req.user.favgame
+        let favGame=req.user.favGame
         let i;
         for( i=0;i<games.length;i++){
 
@@ -42,7 +42,7 @@ exports.display = async (req,res)=>{
         }
         for( i=0;i<games.length;i++){
 
-            Object.assign(games[i], {favgame:favgame});
+            Object.assign(games[i], {favGame:favGame});
         }
         
         // const userId=req.user._id.toString

@@ -511,7 +511,7 @@ footer {
 
       const response=await axios.get('/profile/remove/game',{params:{id:gameID}})
        output.className = 'gameWrapper';
-            console
+           
               output.innerHTML = response.data;
       }catch(error){
         console.error(error);
