@@ -1,4 +1,12 @@
-<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <style>
     @import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css";
     @import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css";
     @import "https://fonts.googleapis.com/css?family=Raleway:400,300,200,500,600,700";
@@ -26,9 +34,9 @@
     transform: rotate(359deg);
   }
 }
-.bg-dark {
-    background-color: #000000!important;
-}
+
+
+
 .material-card {
   position: relative;
   height: 0;
@@ -1242,6 +1250,13 @@
 .material-card.Blue-Grey.mc-active .mc-btn-action {
   border-color: #ECEFF1;
 }
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+    color: rgb(212 22 22);
+    text-decoration: none;
+}
+.bg-dark {
+    background-color: #000000!important;
+}
 body {
   background-color: #000000;
   color: #37474F;
@@ -1249,16 +1264,99 @@ body {
   font-weight: 300;
   font-size: 16px;
 }
-h1,
-h2,
-h3 {
-  font-weight: 200;
+
+h1, h2, h3 {
+    font-weight: 400;
+    color: white;
 }
-</style>
- 
 
 
- <div class="row active-with-click"  class="webWrapper" id="webOutput">
+  </style>
+</head>
+<body>
+   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">RefreshUs</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="margin: 0%;">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 me-5">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/dashboard">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="/movies">Movies</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/webseries">Webseries</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/games">Games</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contact">Suggestions</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/auth/logout">Logout</a>
+              </li>
+            </ul>
+              
+           
+            
+        
+       
+          </div>
+        </div>
+      </nav>
+  <section class="container">
+  <div class="page-header">
+    <h1>Movies<br>
+    </h1>
+  </div>
+  <div class="row active-with-click" class="wrapper" id="output">
+     
+
+    {{#each movies}}
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <article class="material-card Red">
+        <h2>
+          <span>{{movieName}}</span>
+          <strong>
+            <i class="fa fa-fw fa-star"></i>
+            {{rating}}
+          </strong>
+        </h2>
+        <div class="mc-content">
+          <div class="img-container">
+            <img class="img-responsive" src="{{coverImage}}">
+          </div>
+          <div class="mc-description">
+            {{description}}
+          </div>
+        </div>
+        <a class="mc-btn-action">
+          <i class="fa fa-bars"></i>
+        </a>
+        <div class="mc-footer">
+          <h4>
+            Social
+          </h4>
+          <a class="fa fa-fw fa-heart" onmouseover="hover(this)" onclick="removeFav(this)" id="{{_id}}"></a>
+          <a class="fa fa-fw fa-download"  href="{{link}}"></a>
+         
+        </div>
+      </article>
+    </div>
+   {{/each}}
+   
+   
+  </div>
+  <div class="page-header">
+    <h1>WebSeries<br>
+    </h1>
+  </div>
+  <div class="row active-with-click"  class="webWrapper" id="webOutput">
 
     {{#each webseries}}
     <div class="col-md-4 col-sm-6 col-xs-12">
@@ -1294,3 +1392,171 @@ h3 {
     
    
   </div>
+  <div class="page-header">
+    <h1>Games<br>
+    </h1>
+  </div>
+  <div class="row active-with-click"  class="gameWrapper" id="gameOutput">
+
+    {{#each games}}
+    <div class="col-md-4 col-sm-6 col-xs-12">
+      <article class="material-card Red">
+        <h2>
+          <span>{{gameName}}</span>
+          <strong>
+            <i class="fa fa-fw fa-star"></i>
+            {{rating}}
+          </strong>
+        </h2>
+        <div class="mc-content">
+          <div class="img-container">
+            <img class="img-responsive" src="{{coverImage}}">
+          </div>
+          <div class="mc-description">
+            {{description}}
+          </div>
+        </div>
+        <a class="mc-btn-action">
+          <i class="fa fa-bars"></i>
+        </a>
+        <div class="mc-footer">
+          <h4>
+            Social
+          </h4>
+          <a class="fa fa-fw fa-heart" onclick="removeGameFav(this)" id="{{_id}}"></a>
+          <a class="fa fa-fw fa-download"  href="{{link}}"></a>
+        </div>
+      </article>
+    </div>
+   {{/each}}
+    
+   
+  </div>
+</section>
+
+<a href="https://github.com/marlenesco/material-cards" class="github-corner" aria-label="View source on Github" target="_blank">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+    <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+    <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path>
+  </svg></a>
+<style>
+  .github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out
+  }
+
+  @keyframes octocat-wave {
+
+    0%,
+    100% {
+      transform: rotate(0)
+    }
+
+    20%,
+    60% {
+      transform: rotate(-25deg)
+    }
+
+    40%,
+    80% {
+      transform: rotate(10deg)
+    }
+  }
+
+  @media (max-width:500px) {
+    .github-corner:hover .octo-arm {
+      animation: none
+    }
+
+    .github-corner .octo-arm {
+      animation: octocat-wave 560ms ease-in-out
+    }
+  }
+</style>
+{{!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> --}}
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   
+  <script>
+    function hover(a){
+      a.style="far fa-heart"
+    }
+
+    async function removeFav(a){
+    var output = document.getElementById('output');
+      console.log("inside removeFav")
+      const movieID=a.id
+      console.log(movieID)
+      try{
+
+      const response=await axios.get('/profile/remove',{params:{id:movieID}})
+       output.className = 'wrapper';
+            console
+              output.innerHTML = response.data;
+      }catch(error){
+        console.error(error);
+      }
+    }
+    async function removeGameFav(a){
+       var output = document.getElementById('gameOutput');
+      console.log("inside removeFav")
+      const gameID=a.id
+      console.log(gameID)
+      try{
+
+      const response=await axios.get('/profile/remove/game',{params:{id:gameID}})
+       output.className = 'gameWrapper';
+           
+              output.innerHTML = response.data;
+      }catch(error){
+        console.error(error);
+      }
+    }
+    async function removeWebFav(a){
+       var output = document.getElementById('webOutput');
+      console.log("inside removeFav")
+      const webID=a.id
+      console.log(webID)
+      try{
+
+      const response=await axios.get('/profile/remove/web',{params:{id:webID}})
+       output.className = 'webWrapper';
+            console
+              output.innerHTML = response.data;
+      }catch(error){
+        console.error(error);
+      }
+    }
+ 
+  $(function() {
+        $('.material-card > .mc-btn-action').click(function () {
+            var card = $(this).parent('.material-card');
+            var icon = $(this).children('i');
+            icon.addClass('fa-spin-fast');
+
+            if (card.hasClass('mc-active')) {
+                card.removeClass('mc-active');
+
+                window.setTimeout(function() {
+                    icon
+                        .removeClass('fa-arrow-left')
+                        .removeClass('fa-spin-fast')
+                        .addClass('fa-bars');
+
+                }, 800);
+            } else {
+                card.addClass('mc-active');
+
+                window.setTimeout(function() {
+                    icon
+                        .removeClass('fa-bars')
+                        .removeClass('fa-spin-fast')
+                        .addClass('fa-arrow-left');
+
+                }, 800);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

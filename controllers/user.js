@@ -77,7 +77,7 @@ var webseries = [];
         var item =await Webseries.findById({_id:favW[i]}).lean()
         webseries.push(item)
     }
-    res.render('profile-page',{
+    res.render('try',{
         title:"Profile",
         name: req.user.displayName,
         photo: req.user.image,
