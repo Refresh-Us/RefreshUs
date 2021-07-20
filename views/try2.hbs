@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+  <style>
+    body {
+  padding: 50px 0px;
+  background-color: rgba(0, 0, 0, 1);
+}
+
+.container {
+  padding: 40px 25px !important;
+  
+  display: -webkit-box  !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  -webkit-box-pack: center !important;
+  justify-content: center !important;
+}
+
+.cardWrap {
+  margin: 10px;
+  -webkit-transform: perspective(800px);
+  transform: perspective(800px);
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.cardWrap:hover .cardInfo {
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.cardWrap:hover .cardInfo p {
+  opacity: 1;
+}
+
+.cardWrap:hover .cardInfo,
+.cardWrap:hover .cardInfo p {
+  -webkit-transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.cardWrap:hover .cardInfo:after {
+  -webkit-transition: 5s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: 5s cubic-bezier(0.23, 1, 0.32, 1);
+  opacity: 1;
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.cardWrap:hover .cardBg {
+  -webkit-transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 5s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+    opacity 5s cubic-bezier(0.23, 1, 0.32, 1);
+  opacity: 0.8;
+}
+
+.cardWrap:hover .card {
+  -webkit-transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 2s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 2s cubic-bezier(0.23, 1, 0.32, 1) !important;
+  box-shadow: rgba(161, 87, 87, 0.808) 0 0 40px 5px, white 0 0 0 1px,
+    rgba(0, 0, 0, 0.66) 0 30px 60px 0, inset rgb(10, 3, 3) 0 0 0 5px,
+    inset white 0 0 0 6px !important;
+}
+
+.card {
+  position: relative !important;
+  -webkit-box-flex: 0 !important;
+  flex: 0 0 240px !important;
+  width: 240px !important;
+  height: 320px !important;
+  background-color: #333 !important;
+  overflow: hidden !important;
+  border-radius: 10px !important;
+  box-shadow: rgba(0, 0, 0, 0.66) 0 30px 60px 0, inset #333 0 0 0 5px ,
+    inset rgba(255, 255, 255, 0.5) 0 0 0 6px !important;
+  -webkit-transition: 1s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
+  transition: 1s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
+}
+
+.cardBg {
+  opacity: 0.5;
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  -webkit-transition: 1s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+    opacity 5s 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: 1s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+    opacity 5s 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  pointer-events: none;
+}
+
+.cardInfo {
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  -webkit-transform: translateY(40%);
+  transform: translateY(40%);
+  -webkit-transition: 0.6s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: 0.6s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.cardInfo p {
+  opacity: 0;
+  text-shadow: black 0 2px 3px;
+  -webkit-transition: 0.6s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: 0.6s 1.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.cardInfo * {
+  position: relative;
+  z-index: 1;
+}
+
+.cardInfo:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(transparent),
+    to(rgba(0, 0, 0, 0.6))
+  );
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  background-blend-mode: overlay;
+  opacity: 0;
+  -webkit-transform: translateY(100%);
+  transform: translateY(100%);
+  -webkit-transition: 5s 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transition: 5s 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.cardInfo h1 {
+  font-family: "Playfair Display";
+  font-size: 36px;
+  font-weight: 700;
+  text-shadow: rgba(0, 0, 0, 0.5) 0 10px 10px;
+}
+.bg-dark {
+    background-color: #000000!important;
+}
+body{
+  padding-top: 0%  !important;
+}
+/* set arrow positioning */
+.link .arrow {
+	width: 60px;
+	height: 82px;
+	position: relative; /* don't forget set container to relative */
+	left: 0%;
+	margin-left: 0px;
+	bottom: 5%;
+  z-index:999;
+}
+/* set arrow styles */
+.link .arrow path {
+	stroke: #ff1f06;
+	stroke-width: 2px;
+	fill: transparent;	
+	animation: down 2s infinite;
+}
+/* arrow keyframe animation */
+@keyframes down{
+0% { opacity:0 }
+25% { opacity:1 }
+75% { opacity:0 }
+100% { opacity:0 }
+}
+/* arrow animation delay */
+.link .arrow path.a1{	animation-delay:-1s; }
+.link .arrow path.a2{	animation-delay:-.5s; }
+.link .arrow path.a3{	animation-delay:0s; }
+
+h1{
+  text-align: center;
+}
+
+
+  </style>
+</head>
+<body>
+
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">RefreshUs</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="margin: 0%;">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 me-5">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/dashboard">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/movies">Movies</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/webseries">Webseries</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/games">Games</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contact">Suggestions</a>
+              </li>
+            </ul>
+
+            <ul class="navbar-nav me-2 mb-2 mb-lg-0">
+             <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="far fa-user"> Welcome {{name}}</i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+            <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
+          </ul>
+        </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+
+  <div class="container">
+  
+  
+    
+  <div class="row mt-5">
+     <h1 style="color: white;">Movies</h1>
+
+    {{#each movies}}
+    
+    <div class="col-md-4">
+      <div class="container">
+  <div class="cardWrap">
+    <div class="card">
+      <div class="cardBg" style="background-image: url('{{coverImage}}');
+       transform: translateX(19px) translateY(22px);"></div>
+      <div class="cardInfo">
+        <h3 class="cardTitle">
+          {{movieName}}
+        </h3>
+        <p>{{ stripTags (truncate description 50)}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+     </div>
+  
+    {{/each}}   <a class="link" href="/games">
+    <svg class="arrow" style="left: 50%;">
+	<path class="a1" d="M0 0 L30 22 L60 0"></path>
+	<path class="a2" d="M0 20 L30 42 L60 20"></path>
+	<path class="a3" d="M0 40 L30 62 L60 40"></path>
+</svg> </a>
+    
+    
+    </div>
+  <div class="row mt-5">
+    <h1 style="color: white;">Games</h1>
+    {{#each games}}
+    
+    <div class="col-md-4">
+      <div class="container">
+  <div class="cardWrap">
+    <div class="card">
+      <div class="cardBg" style="background-image: url('{{coverImage}}');
+       transform: translateX(19px) translateY(22px);"></div>
+      <div class="cardInfo">
+        <h3 class="cardTitle">
+          {{gameName}}
+        </h3>
+        <p>A subject which deals with.... Well Maths!</p>
+      </div>
+    </div>
+  </div>
+</div>
+     </div>
+  
+    {{/each}}
+    <a class="link" href="/games">
+    <svg class="arrow" style="left: 50%;">
+	<path class="a1" d="M0 0 L30 22 L60 0"></path>
+	<path class="a2" d="M0 20 L30 42 L60 20"></path>
+	<path class="a3" d="M0 40 L30 62 L60 40"></path>
+</svg> </a>
+    
+    </div>
+  <div class="row mt-5">
+    <h1 style="color: white;">Webseries</h1>
+    {{#each webseries}}
+    
+    <div class="col-md-4">
+      <div class="container">
+  <div class="cardWrap">
+    <div class="card">
+      <div class="cardBg" style="background-image: url('{{coverImage}}');
+       transform: translateX(19px) translateY(22px);"></div>
+      <div class="cardInfo">
+        <h3 class="cardTitle">
+          {{webseriesName}}
+        </h3>
+        <p>A subject which deals with.... Well Maths!</p>
+      </div>
+    </div>
+  </div>
+</div>
+     </div>
+  
+    {{/each}}
+    <a class="link" href="/webseries">
+    <svg class="arrow" style="left: 50%;">
+	<path class="a1" d="M0 0 L30 22 L60 0"></path>
+	<path class="a2" d="M0 20 L30 42 L60 20"></path>
+	<path class="a3" d="M0 40 L30 62 L60 40"></path>
+</svg> </a>
+    
+    </div>
+    
+   
+  </div>
+  <script>
+    const wrapper = document.querySelectorAll(".cardWrap");
+
+wrapper.forEach(element => {
+  let state = {
+    mouseX: 0,
+    mouseY: 0,
+    height: element.clientHeight,
+    width: element.clientWidth
+  };
+
+  element.addEventListener("mousemove", ele => {
+    const card = element.querySelector(".card");
+    const cardBg = card.querySelector(".cardBg");
+    state.mouseX = ele.pageX - element.offsetLeft - state.width / 2;
+    state.mouseY = ele.pageY - element.offsetTop - state.height / 2;
+
+    // parallax angle in card
+    const angleX = (state.mouseX / state.width) * 30;
+    const angleY = (state.mouseY / state.height) * -30;
+    card.style.transform = `rotateY(20deg) rotateX(-20deg) `;
+
+    // parallax position of background in card
+    const posX = (state.mouseX / state.width) * -40;
+    const posY = (state.mouseY / state.height) * -40;
+    cardBg.style.transform = `translateX(20px) translateY(20px)`;
+  });
+
+  element.addEventListener("mouseout", () => {
+    const card = element.querySelector(".card");
+    const cardBg = card.querySelector(".cardBg");
+    card.style.transform = `rotateY(0deg) rotateX(0deg) `;
+    cardBg.style.transform = `translateX(19px) translateY(22px)`;
+  });
+});
+
+  </script>
+</body>
+</html>

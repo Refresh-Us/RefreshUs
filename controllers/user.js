@@ -10,7 +10,7 @@ exports.dashboard=async(req,res)=>{
         const games=await Game.find().limit(6).lean()
         const movies=await Movie.find().limit(6).lean()
         const webseries=await Webseries.find().limit(6).lean()
-        res.render('home',{
+        res.render('try2',{
             name: req.user.displayName,
             photo: req.user.image,
             title:"Dashboard",
