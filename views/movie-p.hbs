@@ -6,11 +6,119 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>Document</title>
 
 
 <link rel="stylesheet" href="css/{{style}}">
+<style>
+  .blog-post{
+    width: 70%;
+    max-width:98rem;
+    padding: 2rem;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 150px -45px rgba(255, 51, 0, 0.5);
+    border-radius: 0.8rem;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 8%;
+    margin-bottom: 7%;
+  }
 
+  .blog-post_img{
+    min-width: 25rem;
+    max-width: 25rem;
+    height: 25rem;
+    transform: translateX(-3rem);
+    position: relative;
+  }
+
+  .blog-post_img img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 0.8rem;
+  }
+
+  .blog-post_date span{
+    display: block;
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: .2rem 0;
+  }
+
+  .blog-post_title{
+    font-size: 2rem;
+    margin: 1rem 0 1.5rem;
+    color: red;
+  }
+
+  .blog-post_text{
+    margin-bottom: 2.5rem;
+    font-size: 1.2rem;
+    color: white;
+  }
+
+  .blog-post_cta{
+    display: inline-block;
+    padding: 1rem;
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+    color: black;
+    background-image: linear-gradient(to right,#4fac4f 0%,#00f2fe 100%);
+    text-decoration: none;
+    border-radius: 0.8rem;
+  }
+
+  .blog-post_cta:hover{
+    background-image: linear-gradient(to right,#00f2fe 0%, #4fac4f 100%);
+  }
+
+  @media screen and (max-width:1068px) {
+    .blog-post{
+      max-width: 80rem;
+    }
+    .blog-post_img{
+      min-width: 20rem;
+      max-width: 20rem;
+    }
+  }
+  @media screen and (max-width:868px) {
+    .blog-post{
+      padding: 2rem;
+      flex-direction: column;
+      margin: 5%;
+      margin-bottom: 0;
+      margin-top: 25%;
+      width: 90%;
+    }
+    .blog-post_title,{
+      text-align: center;
+    }
+    .blog-post_img{
+      min-width: 100%;
+      max-width: 100%;
+      transform: translate(0,-3rem);
+    }
+  }
+  @media screen and (max-width:768px) {
+    .blog-post{
+      max-width: 70rem;
+    }
+    .blog-post_img{
+      height: 15rem;
+    }
+  }
+
+  .material-icons{
+    font-size: 30px !important;
+  }
+</style>
 </head>
 <body>
  
@@ -88,37 +196,24 @@
    
    {{#each movies }}
    
-	<div class="main_card" >
-		<div class="card_left">
-			<div class="card_datails">
-				<h1>{{movieName}}</h1>
-				<div class="card_cat">
-					<p class="PG">Hollywood</p>
-					<p class="year">2018</p>
-					<p class="genre">{{genre}}</p>
-					<p class="time">2h 28m</p>
-				</div>
-				<p class="disc">{{description}}
-          {{!-- {{ stripTags (truncate description 90)}} --}}
-          </p>
-				{{!-- <a href="https://www.imdb.com/title/tt4912910/" target="_blank">Read More</a> --}}
-			<div class="social-btn">
-        <!-- WATCH TRAILER-->
-				<button>
-					<i class="fas fa-play"></i> SEE TRAILER
-				</button>
-				<!-- GET-->
-				<button>
-					<i class="fas fa-download"></i> DOWNLOAD
-				</button>
-				<!--USERS RATINGS-->
-				<button>
-					<i class="fas fa-star"></i> {{rating}}
-				</button>
-				<!--BOOKMARK-->
-				<button onclick="getFav(this)" value="{{_id}}"  name="{{email}}" class="foo"  style="background-color: #e50914;" id="x" >
-          <i class="fas fa-heart"></i>
-          
+
+    <div class="blog-post">
+      <div class="blog-post_img">
+        <img src="{{coverImage}}" alt="" class="img">
+      </div>
+      <div class="blog-post_info">
+        <div class="blog-post_date">
+          <span><i class="fas fa-star" style="color:gold;"></i> {{rating}}</span>
+          <span style="text-transform: uppercase;">{{genre}}</span>
+        </div>
+        <h1 class="blog-post_title">{{movieName}}</h1>
+        <p class="blog-post_text">
+          {{description}}
+        </p>
+        <button class="movie-card__icon foo" style="border: none;background:transparent;color:white;"   onclick="getFav(this)" value="{{_id}}" name="{{email}}" id="x"><i class="material-icons">&#xe87d</i></button>
+     
+      <button class="movie-card__icon" style="border: none;background:transparent;color:white;font-size:"><i class="material-icons" st>play_circle_outline</i></button>
+      <button class="movie-card__icon" style="border: none;background:transparent;color:white;font-size:"><i class="material-icons">downloading</i></button>
     <script>
       
         console.log("Runing JavaScript With EveryHelpers");
@@ -147,7 +242,8 @@
                 
             
               console.log("Found a Movie to star mark")
-                inputElements[j].style.backgroundColor='#6a5acd'
+                inputElements[j].style.color='red'
+               inputElements[j].style.opacity='1'
           }
         }
      } console.log("Data is Shown"+data)
@@ -159,22 +255,8 @@
       
       
     </script>
-				</button>
-			</div>	
-			</div>
-		</div>
-		<div class="card_right">
-			<div class="img_container">
-				<img src="{{coverImage}}" alt="">
-				</div>
-				<div class="play_btn">
-					<a href="https://www.imdb.com/title/tt4912910/" target="_blank">
-						<i class="fas fa-play-circle"></i>
-					</a>
-				</div>
-			</div>
-		</div>
-
+      </div>
+    </div>
     
     {{/each}}
 	</div>
@@ -310,11 +392,11 @@
           btn.count=x.toString()
 
         if(x>0){
-            btn.style.backgroundColor='#6a5acd'
+            btn.style.color='red'
             alert("Already Added");
         }else{
         alert("Added To Favourite List")
-        btn.style.backgroundColor='#6a5acd'
+        btn.style.color='red'
 
         }
 
