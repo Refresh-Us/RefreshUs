@@ -78,6 +78,13 @@
   
   
 <div class="wrapper ultimate" id="output"> 
+
+  <script>
+    let count=0;
+    let data;
+    let response;
+    let i;
+  </script>
    
    {{#each movies }}
    
@@ -109,8 +116,49 @@
 					<i class="fas fa-star"></i> {{rating}}
 				</button>
 				<!--BOOKMARK-->
-				<button onclick="getFav(this)" value="{{_id}}" name="{{email}}" style="background-color: #e50914;" id="x">
+				<button onclick="getFav(this)" value="{{_id}}"  name="{{email}}" class="foo"  style="background-color: #e50914;" id="x" >
           <i class="fas fa-heart"></i>
+          
+    <script>
+      
+        console.log("Runing JavaScript With EveryHelpers");
+      
+        
+      count++;
+      console.log(count)
+    
+
+       var inputElements = document.getElementsByClassName("foo");
+       {{!-- var inputElements = document.querySelectorAll("[class='foo']"); --}}
+     
+       
+      
+       response=JSON.parse(localStorage.getItem('response'))
+       data=response.data.user.favMovie[0]
+
+       for(j=0; inputElements.length > j; j++){
+
+           for(i=0;i<response.data.user.favMovie.length;i++){
+
+          console.log("Inside start mark for loop")
+                console.log(inputElements[j].value)
+                console.log(response.data.user.favMovie[i])
+          if(inputElements[j].value==response.data.user.favMovie[i]){
+                
+            
+              console.log("Found a Movie to star mark")
+                inputElements[j].style.backgroundColor='#6a5acd'
+          }
+        }
+     } console.log("Data is Shown"+data)
+
+        
+
+      
+       
+      
+      
+    </script>
 				</button>
 			</div>	
 			</div>
@@ -126,6 +174,7 @@
 				</div>
 			</div>
 		</div>
+
     
     {{/each}}
 	</div>
@@ -146,6 +195,7 @@
              console.log(res)
            {{!-- return res --}}
 
+            localStorage.setItem('response',JSON.stringify(res))
             return res
         } catch (error) {
           console.error(error);

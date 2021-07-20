@@ -46,7 +46,7 @@ exports.display = async (req,res)=>{
         }
         
         // const userId=req.user._id.toString
-        // console.log(movies);
+        console.log(movies);
         res.render('movie-p',{
             // email: req.user.email,
             // userId: req.user._id,

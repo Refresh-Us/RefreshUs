@@ -243,13 +243,20 @@ h1, h2, h3 {
   
   
 <div class="wrapper ultimate" id="output"> 
+  <script>
+    let count=0;
+    let data;
+    let response;
+    let i;
+  </script>
    
    {{#each webseries}}
    <div id="movie-card-list">
   <div class="movie-card" data-movie="Blade Runner" style="background-image: url('{{coverImage}}');">
     <div class="movie-card__overlay"></div>
     <div class="movie-card__share">
-      <button class="movie-card__icon" style="border: none;" onclick="getFav(this)" value="{{_id}}" name="{{email}}" id="x"><i class="material-icons">&#xe87d</i></button>
+      <button class="movie-card__icon foo" style="border: none;"   onclick="getFav(this)" value="{{_id}}" name="{{email}}" id="x"><i class="material-icons">&#xe87d</i></button>
+     
       <button class="movie-card__icon" style="border: none;"><i class="material-icons">play_circle_outline</i></button>
     </div>
     <div class="movie-card__content">
@@ -262,6 +269,42 @@ h1, h2, h3 {
     </div>
   </div>
 	</div>
+   <script>
+      
+        console.log("Runing JavaScript With EveryHelpers");
+      
+        
+      count++;
+      console.log(count)
+    
+
+       var inputElements = document.getElementsByClassName("foo");
+       {{!-- var inputElements = document.querySelectorAll("[class='foo']"); --}}
+     
+       
+      
+       response=JSON.parse(localStorage.getItem('response'))
+       data=response.data.user.favWebseries[0]
+
+       for(j=0; inputElements.length > j; j++){
+
+           for(i=0;i<response.data.user.favWebseries.length;i++){
+
+          console.log("Inside start mark for loop")
+                console.log(inputElements[j].value)
+                console.log(response.data.user.favWebseries[i])
+          if(inputElements[j].value==response.data.user.favWebseries[i]){
+                
+            
+              console.log("Found a Movie to star mark")
+              
+                  inputElements[j].style.color='red'
+               inputElements[j].style.opacity='1'
+          }
+        }
+     } console.log("Data is Shown"+data)
+
+    </script>
 {{/each}}
 	   
 
@@ -277,6 +320,7 @@ h1, h2, h3 {
        try {
            const  res=await axios.get("/webseries/all")
              console.log(res)
+              localStorage.setItem('response',JSON.stringify(res))
            {{!-- return res --}}
 
             return res
