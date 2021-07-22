@@ -8,10 +8,11 @@ const gameSchema = new mongoose.Schema({
     default: Date.now,
   },
   link:String,
-  rating: Number,
+  rating: String,
   description:String,
   coverImage:String,
-  titleImage:String
+  titleImage:String,
+  trailer: String
 
 })
 

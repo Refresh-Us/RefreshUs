@@ -11,9 +11,10 @@ const movieSchema = new mongoose.Schema({
   duration:String,
   description:String,
   coverImage:String,
-  rating:Number,
+  rating:String,
   year: String,
-  type: String
+  type: String,
+  trailer: String
 })
 
 module.exports = mongoose.model('Movie',movieSchema);

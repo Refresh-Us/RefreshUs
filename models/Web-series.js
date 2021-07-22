@@ -12,7 +12,8 @@ const webSchema = new mongoose.Schema({
   description:String,
   coverImage:String,
   year: String,
-  rating:String
+  rating:String,
+  trailer: String
 })
 
 module.exports = mongoose.model('Webseries',webSchema);
