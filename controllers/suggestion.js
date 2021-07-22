@@ -5,7 +5,7 @@ exports.contact = (req,res)=>{
     res.render('suggestions',{
         title:"Suggestions",
         style:"suggestion.css",
-        name: req.user.displayName,
+        name: req.user.firstName,
         email: req.user.email
 })
 }

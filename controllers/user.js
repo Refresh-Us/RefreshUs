@@ -11,7 +11,7 @@ exports.dashboard=async(req,res)=>{
         const movies=await Movie.find().limit(6).lean()
         const webseries=await Webseries.find().limit(6).lean()
         res.render('try2',{
-            name: req.user.displayName,
+            name: req.user.firstName,
             photo: req.user.image,
             title:"Dashboard",
             movies:movies,
@@ -79,7 +79,7 @@ var webseries = [];
     }
     res.render('try',{
         title:"Profile",
-        name: req.user.displayName,
+        name: req.user.firstName,
         photo: req.user.image,
         time: req.user.createdAt,
         movies: movies,
