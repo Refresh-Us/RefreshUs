@@ -51,6 +51,10 @@ exports.login=(req,res) => {
     })
 }
 
+exports.team=(req,res) => {
+    res.render('ourteam')
+}
+
 exports.landingPage=(req,res) => {
 
     res.render('landing',{title:"Welcome",

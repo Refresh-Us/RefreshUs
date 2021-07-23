@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const {ensureAuth , ensureGuest} = require('../middleware/auth')
 // const dashboard =require('../controllers/user')
-const {dashboard, login,landingPage,profilePage,favRemove,searched,favGameRemove,favWebRemove}=require('../controllers/user.js')
+const {dashboard, login,landingPage,profilePage,favRemove,searched,favGameRemove,favWebRemove,team}=require('../controllers/user.js')
 const Movie = require('../models/movie')
 const Game = require('../models/movie')
 const Webseries=require('../models/web-series')
@@ -36,6 +36,8 @@ router.get('/profile/remove',ensureAuth,favRemove)
 router.get('/profile/remove/game',ensureAuth,favGameRemove)
 
 router.get('/profile/remove/web',ensureAuth,favWebRemove)
+
+router.get('/ourteam',ensureAuth,team)
 
 
 
@@ -126,5 +128,6 @@ router.get('/webseries/like', ensureAuth,async(req,res)=>{
     })
 
 })
+
 
 module.exports = router
