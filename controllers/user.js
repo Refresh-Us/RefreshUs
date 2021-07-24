@@ -58,7 +58,7 @@ exports.faq=(req,res) => {
     res.render('faq',{
         
         name: req.user.displayName,
-        
+        title: "FAQs"
         
     })
 }
