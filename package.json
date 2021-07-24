@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production nodemon server",
+    "start": "node server.js",
     "dev": "cross-env NODE_ENV=production nodemon server"
   },
   "author": "",
@@ -32,6 +32,9 @@
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
     "serverless-http": "^2.7.0"
+  },
+  "engines": {
+    "node": ">=10.0.0"
   },
   "devDependencies": {},
   "repository": {
