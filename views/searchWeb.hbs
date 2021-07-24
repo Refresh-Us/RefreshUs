@@ -186,7 +186,7 @@ h1, h2, h3 {
     <div class="movie-card__overlay"></div>
     <div class="movie-card__share">
       <button class="movie-card__icon" style="border: none;" onclick="getFav(this)" value="{{_id}}" name="{{email}}" id="x"><i class="material-icons">&#xe87d</i></button>
-      <button class="movie-card__icon" style="border: none;"><i class="material-icons">play_circle_outline</i></button>
+            <a href="{{trailer}}"><button class="movie-card__icon" style="border: none;"><i class="material-icons">play_circle_outline</i></button></a>
     </div>
     <div class="movie-card__content">
       <div class="movie-card__header">
@@ -194,7 +194,7 @@ h1, h2, h3 {
         <h4 class="movie-card__info">({{year}}) {{genre}}</h4>
       </div>
       <p class="movie-card__desc">{{description}}</p>
-      <button class="btn btn-outline movie-card__button" type="button">Download</button>
+      <a href="{{link}}"><button class="btn btn-outline movie-card__button" type="button">Download</button></a>
     </div>
   </div>
 	</div>
