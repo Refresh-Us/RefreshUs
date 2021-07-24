@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=production nodemon server",
-    "dev": "cross-env NODE_ENV=production nodemon server"
+    "start": "node server",
+    "dev": "nodemon server"
   },
   "author": "",
   "license": "ISC",
