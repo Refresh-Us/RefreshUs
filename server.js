@@ -58,8 +58,8 @@ app.use('/auth',require('./routers/auth'));
 app.use('/',require('./routers/dashboard'));
 app.use('/',require('./routers/suggestion'));
 
+const PORT = process.env.PORT || 7000
 
-
-app.listen(process.env.PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server is running`);
 });
