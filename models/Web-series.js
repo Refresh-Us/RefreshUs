@@ -11,6 +11,7 @@ const webSchema = new mongoose.Schema({
   duration:String,
   description:String,
   coverImage:String,
+  titleImage:String,
   year: String,
   rating:String,
   trailer: String
