@@ -35,7 +35,7 @@ const end = section.querySelector('h1');
 const controller = new ScrollMagic.Controller();
 
 let scene = new ScrollMagic.Scene({
-    duration:12000,
+    duration:12100,
     triggerElement: intro,
     triggerHook: 0
 })
@@ -64,6 +64,6 @@ scene.on('update',e =>{
 setInterval(() =>{
     delay += (scrollpos - delay) * accelamount;
     video.currentTime = scrollpos;
-},33.33)
+},40)
 
 </script>
