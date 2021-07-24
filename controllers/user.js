@@ -10,7 +10,7 @@ exports.dashboard=async(req,res)=>{
         const games=await Game.find().limit(6).lean()
         const movies=await Movie.find().limit(6).lean()
         const webseries=await Webseries.find().limit(6).lean()
-        res.render('try2',{
+        res.render('home-main',{
             name: req.user.firstName,
             photo: req.user.image,
             title:"Dashboard",
@@ -81,7 +81,7 @@ var webseries = [];
         var item =await Webseries.findById({_id:favW[i]}).lean()
         webseries.push(item)
     }
-    res.render('try',{
+    res.render('profile-main',{
         title:"Profile",
         name: req.user.firstName,
         photo: req.user.image,
