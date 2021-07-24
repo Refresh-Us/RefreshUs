@@ -1,0 +1,928 @@
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Webseries</title>
+
+
+<link rel="stylesheet" href="css/{{style}}">
+<style>
+  @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800");
+  .movie-card {
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 100%;
+  max-width: 800px;
+  height: 100%;
+  min-height: 320px;
+  display: block;
+  margin: 8vh auto;
+  border-radius: 8px;
+  box-shadow: 0px 8px 12px 0px rgba(0, 0, 0, 0.25);
+  position: relative;
+  padding-top: 3vh;
+  box-shadow: 0px 0px 150px -45px rgba(255, 51, 0, 0.5);
+}
+@media screen and (max-width: 800px) {
+  .movie-card {
+    width: 95%;
+    max-width: 95%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .movie-card {
+    background-position: 50% 0%;
+    background-size: cover;
+    height: 400px;
+  }
+}
+
+.movie-card__overlay {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  background: linear-gradient(to right, rgba(42, 159, 255, 0.2) 0%, #212120 60%, #212120 100%);
+  background-blend-mode: multiply;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+@media screen and (max-width: 600px) {
+  .movie-card__overlay {
+    background: linear-gradient(to bottom, rgba(42, 159, 255, 0.2) 0%, #212120 60%, #212120 100%);
+  }
+}
+.movie-card__share {
+  padding: 1em;
+  display: inline-block;
+  width: 100%;
+  max-width: 130px;
+}
+@media screen and (max-width: 600px) {
+  .movie-card__share {
+    display: block;
+    width: 100%;
+  }
+}
+.movie-card__icon {
+  color: #ffffff;
+  mix-blend-mode: lighten;
+  opacity: 1;
+  background: none;
+  padding: 0;
+}
+.movie-card__icon:hover {
+  opacity: 1;
+  mix-blend-mode: lighten;
+}
+.movie-card__icon:not(:first-of-type) {
+  margin-left: 5px;
+}
+.movie-card__icon i {
+  font-size: 1.2em;
+}
+.movie-card__content {
+  width: 100%;
+ 
+      max-width: 402px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  position: relative;
+  float: right;
+  padding-right: 1.2em;
+  padding-bottom: 1em;
+}
+@media screen and (max-width: 1000px) {
+  .movie-card__content {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .movie-card__content {
+    margin-top: 4.2em;
+    width: 100%;
+    float: inherit;
+    max-width: 100%;
+    padding: 0 1em 1em;
+  }
+}
+.movie-card__header {
+  margin-bottom: 2em;
+}
+.movie-card__title {
+  color: #ffffff;
+  margin-bottom: 0.25em;
+  opacity: 0.75;
+}
+.movie-card__info {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.8em;
+  color: #2a9fff;
+  line-height: 1;
+  margin: 0;
+  font-weight: 700;
+  opacity: 0.5;
+}
+.movie-card__desc {
+  font-weight: 300;
+  opacity: 0.84;
+  margin-bottom: 2em;
+}
+
+h1, h2, h3 {
+  font-family: "Montserrat", helvetica, arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1;
+  font-weight: 400;
+}
+
+.btn {
+  padding: 0.5rem 2rem;
+  background-color: rgba(255, 255, 255, 0.4);
+  color: white;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 3px solid #ffffff;
+}
+
+.btn::before {
+  font-family: "Material Icons";
+  content: "downloading";
+  vertical-align: middle;
+  font-size: 1.5em;
+  padding-right: 0.5em;
+}
+
+.btn-outline:hover {
+  border-color: #2a9fff;
+  color: #2a9fff;
+  box-shadow: 0px 1px 8px 0px rgba(245, 199, 0, 0.2);
+}
+
+.material-icons{
+  font-size: 24px !important;
+  z-index: 100;
+}
+ {{!-- footer --}}
+
+.pg-footer {
+  font-family: "Roboto", sans-serif;
+}
+
+.footer {
+  background-color: #000000;
+  color: #fff;
+  margin-top: 17%;
+}
+.footer-wave-svg {
+  background-color: transparent;
+  display: block;
+  height: 30px;
+  position: relative;
+  top: -1px;
+  width: 100%;
+}
+.footer-wave-path {
+  fill: #7b1414;
+}
+
+.footer-content {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1230px;
+  padding: 40px 15px 450px;
+  position: relative;
+}
+
+.footer-content-column {
+  box-sizing: border-box;
+  float: left;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+  color: #fff;
+}
+
+.footer-content-column ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-logo-link {
+  display: inline-block;
+}
+.footer-menu {
+  margin-top: 30px;
+}
+
+.footer-menu-name {
+  color: #fffff2;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  line-height: 18px;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-transform: uppercase;
+}
+.footer-menu-list {
+  list-style: none;
+  margin-bottom: 0;
+  margin-top: 10px;
+  padding-left: 0;
+}
+.footer-menu-list li {
+  margin-top: 5px;
+}
+
+.footer-call-to-action-description {
+  color: #fffff2;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+.footer-call-to-action-button:hover {
+  background-color: #fffff2;
+  color: #c73117;
+}
+.button:last-of-type {
+  margin-right: 0;
+}
+.footer-call-to-action-button {
+  background-color: #c73117
+  border-radius: 21px;
+  color: #fffff2;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  line-height: 18px;
+  padding: 12px 30px;
+  margin: 0 10px 10px 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  position: relative;
+}
+.footer-call-to-action {
+  margin-top: 30px;
+}
+.footer-call-to-action-title {
+  color: #fffff2;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  line-height: 18px;
+  margin-bottom: 0;
+  margin-top: 0;
+  text-transform: uppercase;
+}
+.footer-call-to-action-link-wrapper {
+  margin-bottom: 0;
+  margin-top: 10px;
+  color: #fff;
+  text-decoration: none;
+}
+.footer-call-to-action-link-wrapper a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-social-links {
+  bottom: 0;
+  height: 54px;
+  position: absolute;
+  right: 0;
+  width: 236px;
+}
+
+.footer-social-amoeba-svg {
+  height: 54px;
+  left: 0;
+  display: block;
+  position: absolute;
+  top: 0;
+  width: 236px;
+}
+
+.footer-social-amoeba-path {
+  fill: #027b9a;
+}
+
+.footer-social-link.linkedin {
+  height: 26px;
+  left: 3px;
+  top: 11px;
+  width: 26px;
+}
+
+.footer-social-link {
+  display: block;
+  padding: 10px;
+  position: absolute;
+}
+
+.hidden-link-text {
+  position: absolute;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(0px 0px 99.9% 99.9%);
+  clip-path: inset(0px 0px 99.9% 99.9%);
+  overflow: hidden;
+  height: 1px;
+  width: 1px;
+  padding: 0;
+  border: 0;
+  top: 50%;
+}
+
+.footer-social-icon-svg {
+  display: block;
+}
+
+.footer-social-icon-path {
+  fill: #fffff2;
+  transition: fill 0.2s;
+}
+
+.footer-social-link.twitter {
+  height: 28px;
+  left: 62px;
+  top: 3px;
+  width: 28px;
+}
+
+.footer-social-link.youtube {
+  height: 24px;
+  left: 123px;
+  top: 12px;
+  width: 24px;
+}
+
+.footer-social-link.github {
+  height: 34px;
+  left: 172px;
+  top: 7px;
+  width: 34px;
+}
+
+.footer-copyright {
+  background-color: #027b9a;
+  color: #fff;
+  padding: 15px 30px;
+  text-align: center;
+}
+
+.footer-copyright-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+}
+
+.footer-copyright-text {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.footer-copyright-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Media Query For different screens */
+@media (min-width: 320px) and (max-width: 479px) {
+  /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
+  .footer-content {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1230px;
+    padding: 40px 15px 1050px;
+    position: relative;
+  }
+}
+@media (min-width: 480px) and (max-width: 599px) {
+  /* smartphones, Android phones, landscape iPhone */
+  .footer-content {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1230px;
+    padding: 40px 15px 1050px;
+    position: relative;
+  }
+}
+@media (min-width: 600px) and (max-width: 800px) {
+  /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+  .footer-content {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1230px;
+    padding: 40px 15px 1050px;
+    position: relative;
+  }
+}
+@media (min-width: 801px) {
+  /* tablet, landscape iPad, lo-res laptops ands desktops */
+}
+@media (min-width: 1025px) {
+  /* big landscape tablets, laptops, and desktops */
+}
+@media (min-width: 1281px) {
+  /* hi-res laptops and desktops */
+}
+
+@media (min-width: 760px) {
+  .footer-content {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1230px;
+    padding: 40px 15px 450px;
+    position: relative;
+  }
+
+  .footer-wave-svg {
+    height: 50px;
+  }
+
+  .footer-content-column {
+    width: 24.99%;
+  }
+}
+@media (min-width: 568px) {
+  /* .footer-content-column {
+      width: 49.99%;
+  } */
+}
+</style>
+
+</head>
+<body>
+ 
+       <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding-left: 0% !important;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/"><img src="logo.jpg" alt="" height="50vh"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="margin: 0%;">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 me-5">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/dashboard">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/movies">Movies</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/webseries">Webseries</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/games">Games</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contact">Suggestions</a>
+              </li>
+            </ul>
+
+            <ul class="navbar-nav me-2 mb-2 mb-lg-0">
+             <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="far fa-user"> Welcome {{name}}</i>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/profile">Profile</a></li>
+             <li><a class="dropdown-item" href="/ourteam">OurTeam</a></li>
+            <li><a class="dropdown-item" href="/auth/logout">Logout</a></li>
+          </ul>
+        </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+</header>
+<div class="sort">
+  <form class="d-flex form form" id="form">
+            
+    <div class = 'search-box'>
+    <input class = "search-text" type="text" placeholder = "Search WebSeries" id="searchMovie">
+    <a href="#" type="submit" class = "search-btn">
+     <i class="fas fa-search"></i>
+    </a>         
+  </div> 
+  </form>
+ <select class="nice-select" name="sort" multiple>
+  <option>Sort by...</option>
+  <option value="-rating">Rating: Descending</option>
+  <option value="Action">Action</option>
+  <option value="Romance">Romance</option>
+  <option value="Comedy">Comedy</option>
+  <option value="Horror">Horror</option>
+  <option value="Thriller">Thriller</option>
+  <option value="Scifi">Sci-fi</option>
+</select>
+</div>
+  
+  
+<div class="wrapper ultimate" id="output"> 
+  <script>
+    let count=0;
+    let data;
+    let response;
+    let i;
+  </script>
+   
+   {{#each webseries}}
+   <div id="movie-card-list">
+  <div class="movie-card" data-movie="Blade Runner" style="background-image: url('{{coverImage}}');">
+    <div class="movie-card__overlay"></div>
+    <div class="movie-card__share">
+      <button class="movie-card__icon foo" style="border: none;"   onclick="getFav(this)" value="{{_id}}" name="{{email}}" id="x"><i class="material-icons">&#xe87d</i></button>
+     
+      <a href="{{trailer}}"><button class="movie-card__icon" style="border: none;"><i class="material-icons">play_circle_outline</i></button></a>
+    </div>
+    <div class="movie-card__content">
+      <div class="movie-card__header">
+        <h3 class="movie-card__title">{{webseriesName}}  <span><i class="fas fa-star" style="color:gold;"></i> {{rating}}</span></h3>
+        <h4 class="movie-card__info">({{year}}) {{genre}}</h4>
+      </div>
+      <p class="movie-card__desc">{{description}}</p>
+      <a href="{{link}}"><button class="btn btn-outline movie-card__button" type="button">Download</button></a>
+    </div>
+  </div>
+	</div>
+   <script>
+      
+        console.log("Runing JavaScript With EveryHelpers");
+      
+        
+      count++;
+      console.log(count)
+    
+
+       var inputElements = document.getElementsByClassName("foo");
+       {{!-- var inputElements = document.querySelectorAll("[class='foo']"); --}}
+     
+       
+      
+       response=JSON.parse(localStorage.getItem('response'))
+       data=response.data.user.favWebseries[0]
+
+       for(j=0; inputElements.length > j; j++){
+
+           for(i=0;i<response.data.user.favWebseries.length;i++){
+
+          console.log("Inside start mark for loop")
+                console.log(inputElements[j].value)
+                console.log(response.data.user.favWebseries[i])
+          if(inputElements[j].value==response.data.user.favWebseries[i]){
+                
+            
+              console.log("Found a Movie to star mark")
+              
+                  inputElements[j].style.color='red'
+               inputElements[j].style.opacity='1'
+          }
+        }
+     } console.log("Data is Shown"+data)
+
+    </script>
+{{/each}}
+	   
+
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+   
+   <script>
+      console.log("inside script")
+     
+     async function hello(){
+       try {
+           const  res=await axios.get("/webseries/all")
+             console.log(res)
+              localStorage.setItem('response',JSON.stringify(res))
+           {{!-- return res --}}
+
+            return res
+        } catch (error) {
+          console.error(error);
+        }
+     }
+     let responseAll;
+    hello().then(function (result) {
+        console.log(result); // Ooops, the result is undefined
+        responseAll = result;
+    })
+    console.log(responseAll)
+
+    function checkFav(btn) {
+    let countFav=0
+      
+      console.log("running CheckFav")
+      console.log(responseAll.data.user.favWebseries[0])
+      btn.id=countFav.toString()
+        console.log(btn.id)
+        countFav=parseInt(btn.id)
+        console.log(countFav)
+
+      for(let i=0;i<responseAll.data.user.favWebseries.length;i++){
+          if(responseAll.data.user.favWebseries[i].toString()===btn.value.toString()){
+              countFav=countFav+1;
+              console.log("inside for loop")
+              console.log(countFav)
+          }
+      }
+      console.log(countFav)
+      
+      
+      return countFav
+    }
+
+      const Form = document.querySelector("form");
+      const search=document.getElementById("searchMovie")
+
+      async function getOption(val) {
+        event.preventDefault();
+       console.log("inside get optioin")
+       var output = document.getElementById('output');
+            {{!-- selectElement = document.querySelector('input');
+                      
+            out= selectElement.value;
+            console.log(out) --}}
+              
+         
+          try {
+            const response = await axios.get("/webseries/search",{ params: { sort: val } })
+            console.log(response);
+              {{!-- let str=response.data
+            str=str.slice(3940,8360)
+            console.log(str) --}}
+            {{!-- document.querySelector('html').innerHTML =response.data --}}
+            
+            output.className = 'ultimate';
+            
+              output.innerHTML =response.data
+
+              console.log(response.data)
+            {{!-- output.className = 'ultimate';
+            console
+             output.innerHTML = response.data; --}}
+
+         
+        } catch (error) {
+          console.error(error);
+        }
+      
+  
+        }
+
+      Form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const webseriesName = search.value;
+        webseriesName.toLowerCase()
+        console.log("inside form")
+
+        async function getUser() {
+           var output = document.getElementById('output');
+          console.log("inside function")
+          console.log(webseriesName)
+          try {
+            const response = await axios.get("/webseries/search",{ params: { webseriesName: webseriesName } })
+            console.log(response);
+            {{!-- document.getElementsByTagName("html")[0].innerHTML=response.data --}}
+           
+            {{!-- document.querySelector('html').innerHTML =response.data --}}
+            
+            output.className = 'ultimate';
+            
+              output.innerHTML =response.data
+
+         
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      getUser()
+      })
+
+
+       async function getFav(btn) {
+        console.log("Insdie getFav")
+
+         let x=checkFav(btn)
+          console.log(x)
+          btn.count=x.toString()
+
+          if(x>0){
+              btn.style.color='red'
+              btn.style.opacity='1'
+              alert("Already Added");
+          }else{
+          alert("Added To Favourite List")
+          btn.style.color='red'
+          btn.style.opacity='1'
+        }
+
+
+         const Usermail=btn.name
+         const webId=btn.value
+
+         console.log(Usermail)
+         console.log(webId) 
+
+         
+         
+         console.log("Inside getfav function")
+          try {
+            const response = await axios.get("/webseries/like",
+            { params: { id:webId ,
+              _id:Usermail 
+              } 
+            })
+            console.log(response);
+            console.log(id)
+            {{!-- console.log(_id) --}}
+            output.className = 'ultimate';
+            console
+              output.innerHTML = response.data;
+
+         
+        } catch (error) {
+          console.error(error);
+        }
+
+       }
+
+
+
+
+
+      {{!-- DropDown List --}}
+
+      $('.nice-select').each(function() {
+  
+  var select = $(this),
+      name = select.attr('name');
+  
+  select.hide();
+  
+  select.wrap('<div class="nice-select-wrap"></div>');
+  
+  var parent = select.parent('.nice-select-wrap');
+  
+  parent.append('<ul id=' + name + ' style="display:none"></ul>');
+  
+  select.find('option').each(function() {
+
+    var option = $(this),
+        value = option.attr('value'),
+        label = option.text();
+    
+    if (option.is(":first-child")) {
+      
+      $('<a href="#" class="drop">' + label + '</a>').insertBefore(parent.find('ul'));
+      
+    } else {
+      
+      parent.find('ul').append('<li><a href="#" id="' + value + '">' + label + '</a></li>');
+      
+    }
+    
+  });
+  
+  parent.find('a').on('click', function(e) {
+    
+    parent.toggleClass('down').find('ul').slideToggle(300);
+    
+    e.preventDefault();
+  
+  });
+  
+  parent.find('ul a').on('click', function(e) {
+    
+    var niceOption = $(this),
+    		value = niceOption.attr('id'),
+        text = niceOption.text();
+    
+    select.val(value);
+    console.log(value)
+     getOption(value)
+    
+    parent.find('.drop').text(text);
+    
+    e.preventDefault();
+  
+  });
+  
+});
+
+$('.header').on('click', '.search-toggle', function(e) {
+  var selector = $(this).data('selector');
+
+  $(selector).toggleClass('show').find('.search-input').focus();
+  $(this).toggleClass('active');
+
+  e.preventDefault();
+});
+
+   </script>
+
+
+
+
+
+
+</div>
+<div class="pg-footer">
+  <footer class="footer">
+    <svg class="footer-wave-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 100" preserveAspectRatio="none">
+      <path class="footer-wave-path" d="M851.8,100c125,0,288.3-45,348.2-64V0H0v44c3.7-1,7.3-1.9,11-2.9C80.7,22,151.7,10.8,223.5,6.3C276.7,2.9,330,4,383,9.8 c52.2,5.7,103.3,16.2,153.4,32.8C623.9,71.3,726.8,100,851.8,100z"></path>
+    </svg>
+    <div class="footer-content">
+      <div class="footer-content-column">
+        <div class="footer-logo">
+          <a class="footer-logo-link" href="#">
+            <img src="logof.jpg" alt="" height="120vh" width="120vw">
+          </a>
+        </div>
+      </div>
+      <div class="footer-content-column">
+        <div class="footer-menu">
+          <h2 class="footer-menu-name"> Get Started</h2>
+          <ul id="menu-company" class="footer-menu-list">
+            <li class="menu-item menu-item-type-post_type menu-item-object-page">
+              <a href="/faq">FAQs</a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-menu">
+          <h2 class="footer-menu-name"> Legal</h2>
+          <ul id="menu-legal" class="footer-menu-list">
+            <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-privacy-policy menu-item-170434">
+              <a href="#">Privacy Notice</a>
+            </li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page">
+              <a href="#">Terms of Use</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-content-column">
+        <div class="footer-menu">
+          <h2 class="footer-menu-name"> Quick Links</h2>
+          <ul id="menu-quick-links" class="footer-menu-list">
+            <li class="menu-item menu-item-type-custom menu-item-object-custom">
+              <a target="_blank" rel="noopener noreferrer" href="/">Home</a>
+            </li>
+            <li class="menu-item menu-item-type-custom menu-item-object-custom">
+              <a rel="noopener noreferrer" href="/movies">Movies</a>
+            </li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page">
+              <a href="/webseries">Webseries</a>
+            </li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page">
+              <a href="/games">Games</a>
+            </li>
+            <li class="menu-item menu-item-type-post_type_archive menu-item-object-customer">
+              <a href="/contact">Suggestions</a>
+            </li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page">
+              <a href="/profile">Profile</a>
+            </li>
+            <li class="menu-item menu-item-type-post_type menu-item-object-page">
+              <a href="/ourteam">OurTeam</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-content-column">
+        <div class="footer-call-to-action">
+          <h2 class="footer-call-to-action-title"> Let's Chat</h2>
+          <p class="footer-call-to-action-description"> Have a suggestion?</p>
+          <a class="footer-call-to-action-button button" href="/contact" target="_self"> Suggestions </a>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+
+  </footer>
+</div>
+</body>
+</html>
+</div>
