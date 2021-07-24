@@ -54,6 +54,14 @@ exports.login=(req,res) => {
 exports.team=(req,res) => {
     res.render('ourteam')
 }
+exports.faq=(req,res) => {
+    res.render('faq',{
+        
+        name: req.user.displayName,
+        
+        
+    })
+}
 
 exports.landingPage=(req,res) => {
 
