@@ -3,9 +3,9 @@ const router = express.Router()
 const {ensureAuth , ensureGuest} = require('../middleware/auth')
 // const dashboard =require('../controllers/user')
 const {dashboard, login,landingPage,profilePage,favRemove,searched,favGameRemove,favWebRemove,team,faq}=require('../controllers/user.js')
-const Movie = require('../models/movie')
-const Game = require('../models/movie')
-const Webseries=require('../models/web-series')
+const Movie = require('../models/Movie')
+const Game = require('../models/Game')
+const Webseries=require('../models/Web-series')
 const User = require('../models/User')
 const mongoose = require('mongoose');
 

@@ -1,5 +1,5 @@
 const express = require('express');
-const Webseries=require('../models/web-series')
+const Webseries=require('../models/Web-series')
 
 exports.display = async (req,res)=>{
 

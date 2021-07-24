@@ -1,5 +1,5 @@
 const express = require('express');
-const Game=require('../models/game')
+const Game=require('../models/Game')
 
 exports.display = async (req,res)=>{
 
