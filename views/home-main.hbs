@@ -516,6 +516,7 @@ h1{
 
 
 
+
   </style>
 </head>
 <body>
@@ -568,7 +569,7 @@ h1{
   
     
   <div class="row mt-5">
-     <h1 style="color: white;">Movies</h1>
+    <a href="/movies"><h1 style="color: white; ">Movies</h1></a> 
 
     {{#each movies}}
     
@@ -612,7 +613,7 @@ h1{
         <h3 class="cardTitle">
           {{gameName}}
         </h3>
-        <p>A subject which deals with.... Well Maths!</p>
+        <p>{{ stripTags (truncate description 50)}}</p>
       </div>
     </div>
   </div>
@@ -636,13 +637,13 @@ h1{
       <div class="container">
   <div class="cardWrap">
     <div class="card">
-      <div class="cardBg" style="background-image: url('{{coverImage}}');
+      <div class="cardBg" style="background-image: url('{{titleImage}}');
        transform: translateX(19px) translateY(22px);"></div>
       <div class="cardInfo">
         <h3 class="cardTitle">
           {{webseriesName}}
         </h3>
-        <p>A subject which deals with.... Well Maths!</p>
+        <p>{{ stripTags (truncate description 50)}}</p>
       </div>
     </div>
   </div>
