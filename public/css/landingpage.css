@@ -27,7 +27,7 @@ html::-webkit-scrollbar-thumb {
 }
 
 .intro video{
-  height: 100%;
+  height: 100vh;
   width: 100%;
   object-fit: cover;
 }
@@ -35,7 +35,7 @@ html::-webkit-scrollbar-thumb {
 @media only screen and (max-width:530px){
   .intro video{
     height: 100vh;
-    width: 160%;
+    width: 100%;
   }
 }
 
