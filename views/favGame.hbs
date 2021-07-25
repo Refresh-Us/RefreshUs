@@ -1272,7 +1272,7 @@ h3 {
         </h2>
         <div class="mc-content">
           <div class="img-container">
-            <img class="img-responsive" src="{{coverImage}}">
+            <img class="img-responsive" src="{{titleImage}}">
           </div>
           <div class="mc-description">
             {{description}}
@@ -1285,7 +1285,7 @@ h3 {
           <h4>
             Social
           </h4>
-          <a class="fa fa-fw fa-heart" onclick="removeGameFav(this)" id="{{_id}}"></a>
+          <a class="fa fa-fw fa-ban" onclick="removeGameFav(this)" id="{{_id}}"></a>
           <a class="fa fa-fw fa-download"  href="{{link}}"></a>
         </div>
       </article>
@@ -1294,3 +1294,88 @@ h3 {
     
    
   </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   
+  <script>
+    function hover(a){
+      a.style="far fa-heart"
+    }
+
+    async function removeFav(a){
+    var output = document.getElementById('output');
+      console.log("inside removeFav")
+      const movieID=a.id
+      console.log(movieID)
+      try{
+
+      const response=await axios.get('/profile/remove',{params:{id:movieID}})
+       output.className = 'wrapper';
+            console
+              output.innerHTML = response.data;
+      }catch(error){
+        console.error(error);
+      }
+    }
+    async function removeGameFav(a){
+       var output = document.getElementById('gameOutput');
+      console.log("inside removeFav")
+      const gameID=a.id
+      console.log(gameID)
+      try{
+
+      const response=await axios.get('/profile/remove/game',{params:{id:gameID}})
+       output.className = 'gameWrapper';
+           
+              output.innerHTML = response.data;
+      }catch(error){
+        console.error(error);
+      }
+    }
+    async function removeWebFav(a){
+      confirm("DO you want to unfavourites this movie?")
+       var output = document.getElementById('webOutput');
+      console.log("inside removeFav")
+      const webID=a.id
+      console.log(webID)
+      try{
+
+      const response=await axios.get('/profile/remove/web',{params:{id:webID}})
+       output.className = 'webWrapper';
+            console
+              output.innerHTML = response.data;
+      }catch(error){
+        console.error(error);
+      }
+    }
+ 
+  $(function() {
+        $('.material-card > .mc-btn-action').click(function () {
+            var card = $(this).parent('.material-card');
+            var icon = $(this).children('i');
+            icon.addClass('fa-spin-fast');
+
+            if (card.hasClass('mc-active')) {
+                card.removeClass('mc-active');
+
+                window.setTimeout(function() {
+                    icon
+                        .removeClass('fa-arrow-left')
+                        .removeClass('fa-spin-fast')
+                        .addClass('fa-bars');
+
+                }, 800);
+            } else {
+                card.addClass('mc-active');
+
+                window.setTimeout(function() {
+                    icon
+                        .removeClass('fa-bars')
+                        .removeClass('fa-spin-fast')
+                        .addClass('fa-arrow-left');
+
+                }, 800);
+            }
+        });
+    });
+</script>
