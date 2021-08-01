@@ -1,17 +1,16 @@
 module.exports = {
-    ensureAuth: function (req,res,next) {
+    ensureAuth: function (req, res, next) {
         if (req.isAuthenticated()) {
             return next()
-        }
-        else{
-            res.redirect('/')
+        } else {
+            res.redirect("/")
         }
     },
-    ensureGuest: function(req,res,next){
+    ensureGuest: function (req, res, next) {
         if (req.isAuthenticated()) {
-            res.redirect('/dashboard')
-        }else{
+            res.redirect("/dashboard")
+        } else {
             return next()
         }
-    }
+    },
 }
