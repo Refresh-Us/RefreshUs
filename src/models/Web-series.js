@@ -1,6 +1,5 @@
 const mongoose = require("mongoose")
 
-// MongoDB model for web-series
 const webSchema = new mongoose.Schema({
     webseriesName: String,
     genre: String,

@@ -14,10 +14,10 @@ const {
     team,
     faq,
 } = require("../controllers/user.js")
-const Movie = require("../models/movie")
-const Game = require("../models/movie")
-const Webseries = require("../models/web-series")
-const User = require("../models/user")
+const Movie = require("../models/Movie")
+const Game = require("../models/Movie")
+const Webseries = require("../models/Web-series")
+const User = require("../models/User")
 const mongoose = require("mongoose")
 
 //Landing Page

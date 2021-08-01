@@ -1,6 +1,5 @@
 const mongoose = require("mongoose")
 
-// MongoDB model for user
 const UserSchema = new mongoose.Schema({
     googleId: {
         type: String,
