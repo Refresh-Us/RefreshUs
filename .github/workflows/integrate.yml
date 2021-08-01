@@ -4,7 +4,11 @@ on: [push, pull_request_target]
 
 jobs:
     test_PR:
-        environment: DevEnv
+        env:
+            PORT: ${{secrets.PORT}}
+            GOOGLE_CLIENT_ID: ${{secrets.GOOGLE_CLIENT_ID}}
+            GOOGLE_CLIENT_SECRET: ${{secrets.GOOGLE_CLIENT_SECRET}}
+            MONGO_URI: ${{secrets.MONGO_URI}}
         runs-on: ubuntu-latest
 
         steps:
