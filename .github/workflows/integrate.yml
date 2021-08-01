@@ -9,18 +9,9 @@ jobs:
 
         steps:
             - uses: actions/checkout@v2
-              with:
-                  ref: ${{ github.head_ref }}
-                  fetch-depth: 0
             - uses: actions/setup-node@v2
               with:
                   node-version: "16"
-            - uses: creyD/prettier_action@v3.3
-              with:
-                  prettier_options: --write **/*.{js,md}
-                  only_changed: True
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             - run: npm install
             - run: npm run check-format
             - run: npm run build
