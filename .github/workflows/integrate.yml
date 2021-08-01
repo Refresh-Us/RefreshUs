@@ -13,6 +13,6 @@ jobs:
               with:
                   node-version: "14"
             - run: npm install
-            - run: npm check-format
-            - run: npm build
+            - run: npm run check-format
+            - run: npm run build
             # - run: npm test
