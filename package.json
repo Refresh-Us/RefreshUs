@@ -52,5 +52,8 @@
         "url": "https://github.com/Refresh-Us/RefreshUs/issues"
     },
     "homepage": "https://github.com/Refresh-Us/RefreshUs#readme",
-    "description": ""
+    "description": "",
+    "optionalDependencies": {
+        "fsevents": "^2.3.2"
+    }
 }
