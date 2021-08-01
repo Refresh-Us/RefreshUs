@@ -4,18 +4,29 @@ on: [push, pull_request_target]
 permissions: write-all
 
 jobs:
-    # format:
-    #     name: Code Formatter
-    #     runs-on: ubuntu-latest
-    #     steps:
-    #         - name: Node Code Formatter
-    #           uses: MarvinJWendt/run-node-formatter@stable
-    #           env:
-    #               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    format:
+        name: Code Formatter
+        runs-on: ubuntu-latest
+        permissions:
+            actions: write
+            checks: write
+            contents: write
+            deployments: write
+            issues: write
+            packages: write
+            pull-requests: write
+            repository-projects: write
+            security-events: write
+            statuses: write
+        steps:
+            - name: Node Code Formatter
+              uses: MarvinJWendt/run-node-formatter@stable
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     setupnode:
         name: Setup and Test NodeJs
-        # needs: format
+        needs: format
         runs-on: ubuntu-latest
         env:
             PORT: ${{secrets.PORT}}
@@ -34,11 +45,6 @@ jobs:
 
             - name: Install Dependencies
               run: npm install
-
-            - name: Node Code Formatter
-              uses: MarvinJWendt/run-node-formatter@stable
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Check Formatting
               run: npm run check-format
