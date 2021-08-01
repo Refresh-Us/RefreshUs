@@ -5,7 +5,8 @@ on: [push, pull_request_target]
 jobs:
     format:
         name: Code Formatter
-        runs-on: windows-latest
+        runs-on: ubuntu-latest
+        permissions: read-all|write-all
         steps:
             - name: Node Code Formatter
               uses: MarvinJWendt/run-node-formatter@stable
