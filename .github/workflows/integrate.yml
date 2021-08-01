@@ -1,8 +1,7 @@
 name: Node CI
 
 on: [push, pull_request_target]
-
-permissions: read-all|write-all
+permissions: write-all
 
 jobs:
     format:
