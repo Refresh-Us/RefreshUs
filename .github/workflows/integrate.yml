@@ -1,32 +1,20 @@
 name: Node CI
 
 on: [push, pull_request_target]
-permissions: write-all
 
 jobs:
-    format:
-        name: Code Formatter
-        runs-on: ubuntu-latest
-        permissions:
-            actions: write
-            checks: write
-            contents: write
-            deployments: write
-            issues: write
-            packages: write
-            pull-requests: write
-            repository-projects: write
-            security-events: write
-            statuses: write
-        steps:
-            - name: Node Code Formatter
-              uses: MarvinJWendt/run-node-formatter@stable
-              env:
-                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    # format:
+    #     name: Code Formatter
+    #     runs-on: ubuntu-latest
+    #     steps:
+    #         - name: Node Code Formatter
+    #           uses: MarvinJWendt/run-node-formatter@stable
+    #           env:
+    #               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     setupnode:
         name: Setup and Test NodeJs
-        needs: format
+        # needs: format
         runs-on: ubuntu-latest
         env:
             PORT: ${{secrets.PORT}}
@@ -37,6 +25,18 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v2
+
+            - name: Cache node modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-node-modules
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-build-${{ env.cache-name }}-
+                      ${{ runner.os }}-build-
+                      ${{ runner.os }}-
 
             - name: Setup Node
               uses: actions/setup-node@v2
