@@ -1,6 +1,5 @@
 const mongoose = require("mongoose")
 
-// MongoDB model for games
 const gameSchema = new mongoose.Schema({
     gameName: String,
     genre: String,

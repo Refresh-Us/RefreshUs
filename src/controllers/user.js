@@ -1,6 +1,6 @@
-const Movie = require("../models/movie")
-const Game = require("../models/game")
-const Webseries = require("../models/web-series")
+const Movie = require("../models/Movie")
+const Game = require("../models/Game")
+const Webseries = require("../models/Web-series")
 const express = require("express")
 
 exports.dashboard = async (req, res) => {
