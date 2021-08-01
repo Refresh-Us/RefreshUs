@@ -3,16 +3,18 @@ name: Node CI
 on: [push, pull_request_target]
 
 jobs:
-    Format the Code:
-            runs-on: ubuntu-latest
+    format:
+        name: Code Formatter
+        runs-on: ubuntu-latest
         steps:
             - name: Node Code Formatter
             - uses: MarvinJWendt/run-node-formatter@stable
                 env:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    Setup and Test Node.Js:
-        needs: Format the code
+    setupandtestnodejs:
+        name: Setup and Test NodeJs
+        needs: format
         runs-on: ubuntu-latest
         env:
             PORT: ${{secrets.PORT}}
