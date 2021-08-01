@@ -3,10 +3,11 @@
     "version": "1.0.0",
     "main": "server.js",
     "scripts": {
-        "start": "node server.js",
-        "dev": "env-cmd -f ./config/dev.env nodemon server",
+        "start": "node ./src/server.js",
+        "dev": "env-cmd -f ./config/dev.env nodemon ./src/server",
         "build": "node server.js",
-        "test": "",
+        "test-local": "env-cmd -f ./config/test.env jest --forceExit",
+        "test": "jest --forceExit",
         "format": "prettier --write \"src/!(views)/**/*.{js,html}\" --config .prettierrc",
         "check-format": "prettier --check \"src/!(views)/**/*.{js,html}\" --config .prettierrc"
     },
@@ -42,7 +43,12 @@
     },
     "devDependencies": {
         "env-cmd": "^10.1.0",
-        "prettier": "2.3.2"
+        "jest": "^27.0.6",
+        "prettier": "2.3.2",
+        "supertest": "^6.1.4"
+    },
+    "jest": {
+        "testEnvironment": "node"
     },
     "repository": {
         "type": "git",
