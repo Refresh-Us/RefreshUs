@@ -8,8 +8,7 @@
         "build": "node server.js",
         "test": "",
         "format": "prettier --write \"src/!(views)/**/*.{js,html}\" --config .prettierrc",
-        "check-format": "prettier --check \"src/!(views)/**/*.{js,html}\" --config .prettierrc",
-        "prepare": "husky install"
+        "check-format": "prettier --check \"src/!(views)/**/*.{js,html}\" --config .prettierrc"
     },
     "author": "",
     "license": "ISC",
@@ -43,8 +42,6 @@
     },
     "devDependencies": {
         "env-cmd": "^10.1.0",
-        "husky": "^7.0.1",
-        "lint-staged": "^11.1.1",
         "prettier": "2.3.2"
     },
     "repository": {
@@ -58,8 +55,5 @@
     "description": "",
     "optionalDependencies": {
         "fsevents": "^2.3.2"
-    },
-    "lint-staged": {
-        "*.prettierrc": "prettier --write"
     }
 }
