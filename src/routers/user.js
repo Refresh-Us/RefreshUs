@@ -17,7 +17,7 @@ const {
 const Movie = require("../models/movie")
 const Game = require("../models/movie")
 const Webseries = require("../models/web-series")
-const User = require("../models/User")
+const User = require("../models/user")
 const mongoose = require("mongoose")
 
 //Landing Page

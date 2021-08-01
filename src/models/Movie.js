@@ -1,5 +1,6 @@
 const mongoose = require("mongoose")
 
+// MongoDB model for movies
 const movieSchema = new mongoose.Schema({
     movieName: String,
     genre: String,
