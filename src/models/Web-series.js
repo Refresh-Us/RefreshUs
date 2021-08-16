@@ -17,4 +17,10 @@ const webSchema = new mongoose.Schema({
     trailer: String,
 })
 
+webSchema.virtual('seasons',{
+    ref: "WebseriesSeasons",
+	localField: "_id",
+	foreignField: "web_series_ID",
+})
+
 module.exports = mongoose.model("Webseries", webSchema)
