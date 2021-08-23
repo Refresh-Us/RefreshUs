@@ -6,7 +6,7 @@ const webSeasonSchema = new mongoose.Schema({
     description: String,
     coverImage: String,
     titleImage: String,
-    web_series_ID:{
+    webSeriesID:{
         type: mongoose.Schema.Types.ObjectId,
         required:true,
         ref: 'Webseries'
@@ -16,7 +16,7 @@ const webSeasonSchema = new mongoose.Schema({
 webSeasonSchema.virtual('episodes',{
     ref: "WebseriesEpisodes",
 	localField: "_id",
-	foreignField: "web_series_Season_ID",
+	foreignField: "webSeriesSeasonID",
 })
 
 module.exports = mongoose.model("WebseriesSeasons", webSeasonSchema)

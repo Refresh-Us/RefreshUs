@@ -6,7 +6,7 @@ const webEpisodesSchema = new mongoose.Schema({
     description: String,
     coverImage: String,
     titleImage: String,
-    web_series_Season_ID:{
+    webSeriesSeasonID:{
         type: mongoose.Schema.Types.ObjectId,
         required:true,
         ref: 'WebseriesSeasons'

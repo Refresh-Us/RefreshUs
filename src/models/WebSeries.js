@@ -20,7 +20,7 @@ const webSchema = new mongoose.Schema({
 webSchema.virtual('seasons',{
     ref: "WebseriesSeasons",
 	localField: "_id",
-	foreignField: "web_series_ID",
+	foreignField: "webSeriesID",
 })
 
 module.exports = mongoose.model("Webseries", webSchema)
